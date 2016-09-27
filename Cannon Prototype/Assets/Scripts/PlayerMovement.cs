@@ -2,21 +2,13 @@
 using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
-	
-	// Update is called once per frame
-	void Update () {
-        if (Input.GetKey(KeyCode.Q))
-        {
-            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y - 100, 0);
-        }
-        if (Input.GetKey(KeyCode.E))
-        {
-            transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y + 100, 0);
-        }
+
+    // Update is called once per frame
+    void Update() {
         if (Input.GetKey(KeyCode.W))
         {
             Vector3 forwardMovement = new Vector3(transform.forward.x, 0, transform.forward.z);
-            GetComponent<Rigidbody>().AddForce(forwardMovement*0.1f, ForceMode.Impulse);
+            GetComponent<Rigidbody>().AddForce(forwardMovement * 0.1f, ForceMode.Impulse);
         }
         if (Input.GetKey(KeyCode.S))
         {
@@ -33,24 +25,54 @@ public class PlayerMovement : MonoBehaviour {
             Vector3 forwardMovement = new Vector3(transform.right.x, 0, transform.right.z);
             GetComponent<Rigidbody>().AddForce(-forwardMovement * 0.1f, ForceMode.Impulse);
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E))
         {
-            //Switch Mechanic
             int switchIndex = 0;
             GameObject[] cannonArray = GameObject.FindGameObjectsWithTag("Cannon");
-            for(int i = 0; i < cannonArray.Length; i++)
+
+            if (Input.GetKeyDown(KeyCode.Q))
             {
-                if(gameObject == cannonArray[i])
+                //Switch Mechanic
+                if (cannonArray.Length <= 1)
                 {
-                    if(i == cannonArray.Length-1)
+                    return;
+                }
+                for (int i = 0; i < cannonArray.Length; i++)
+                {
+                    if (gameObject == cannonArray[i])
                     {
-                        switchIndex = 0;
-                    }
-                    else
-                    {
-                        switchIndex = i + 1;
+                        if (i == cannonArray.Length - 1)
+                        {
+                            switchIndex = 0;
+                        }
+                        else
+                        {
+                            switchIndex = i + 1;
+                        }
                     }
                 }
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                //Switch Mechanic
+                if (cannonArray.Length <= 1)
+                {
+                    return;
+                }
+                for (int i = cannonArray.Length-1; i >= 0; i--)
+                {
+                    if (gameObject == cannonArray[i])
+                    {
+                        if (i == 0)
+                        {
+                            switchIndex = cannonArray.Length - 1;
+                        }
+                        else
+                        {
+                            switchIndex = i - 1;
+                        }
+                    }
+                } 
             }
             //Switch next object on
             cannonArray[switchIndex].transform.FindChild("Main Camera").gameObject.SetActive(true);
