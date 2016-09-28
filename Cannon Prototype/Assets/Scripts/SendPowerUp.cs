@@ -5,7 +5,7 @@ public class SendPowerUp : MonoBehaviour {
 
 	public delegate void PowerUpSend();
 	public static event PowerUpSend GenericPowerUp;
-	public float resetTimer = 30f;f
+	public float resetTimer = 30f;
 
 	private float liveTimer;
 
