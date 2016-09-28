@@ -15,15 +15,15 @@ public class PlayerMovement : MonoBehaviour {
             Vector3 forwardMovement = new Vector3(transform.forward.x, 0, transform.forward.z);
             GetComponent<Rigidbody>().AddForce(-forwardMovement * 0.1f, ForceMode.Impulse);
         }
-        if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.A))
         {
             Vector3 forwardMovement = new Vector3(-transform.right.x, 0, -transform.right.z);
             GetComponent<Rigidbody>().AddForce(forwardMovement * 0.1f, ForceMode.Impulse);
         }
-        if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.D))
         {
             Vector3 forwardMovement = new Vector3(transform.right.x, 0, transform.right.z);
-            GetComponent<Rigidbody>().AddForce(-forwardMovement * 0.1f, ForceMode.Impulse);
+            GetComponent<Rigidbody>().AddForce(forwardMovement * 0.1f, ForceMode.Impulse);
         }
         if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E))
         {
