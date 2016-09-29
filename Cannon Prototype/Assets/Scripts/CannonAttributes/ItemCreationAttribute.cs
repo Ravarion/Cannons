@@ -7,7 +7,8 @@ public class ItemCreationAttribute : CannonAttribute {
     {
         if(GameObject.FindGameObjectWithTag("ObjectCapsule") == null)
         {
-            foreach(GameObject spawnedObject in GameObject.FindGameObjectsWithTag("SpawnedObject"))
+            GetComponent<Rigidbody>().AddForce(transform.forward * -25);
+            foreach (GameObject spawnedObject in GameObject.FindGameObjectsWithTag("SpawnedObject"))
             {
                 if(spawnedObject.GetComponent<GrowWhilePressed>().isGrowing)
                 {
