@@ -7,17 +7,27 @@ public class PlayerController : MonoBehaviour {
 
 	//when this object is created, it is subscribed to the event GenericPowerUpAbility
 	void OnEnable(){
-		SendPowerUp.GenericPowerUp += GenericPowerUpAbility;
+        JetpackPickUp.JetPackOn += GenericPowerUpAbility;
 	}
 	//when the event GenericPowerUpAbility occurs, change color to pickupGetColor
 	void GenericPowerUpAbility(){
 		this.gameObject.GetComponent<Renderer>().material.SetColor("_Color", pickupGetColor);
+        this.gameObject.GetComponent<Jetpack>().enabled=true;
 	}
 
 
 	void Update(){
 		if (Input.GetKey(KeyCode.F)){
-			this.gameObject.GetComponent<Renderer>().material.SetColor("_Color", originalColor);
+            ResetPowerUp();
         }
 	}
+
+    //this is called to disable current powerups, intended to be simplified with enums
+    void ResetPowerUp(){
+        this.gameObject.GetComponent<Renderer>().material.SetColor("_Color", originalColor);
+
+        //if the jetpack script is enabled, disable it
+        if (this.gameObject.GetComponent<Jetpack>().enabled)
+            this.gameObject.GetComponent<Jetpack>().enabled=false;
+    }
 }
