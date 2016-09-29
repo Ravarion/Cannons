@@ -28,9 +28,10 @@ public class CannonAttribute : MonoBehaviour {
     {
         if (!GetComponent<PlayerController>().currentCannon)
         {
+            print(name);
             return;
         }
-        if (x > -0.5 && x < 0.5)
+        if (x <= -0.5 || x >= 0.5)
         {
             int switchIndex = 0;
             GameObject[] cannonArray = GameObject.FindGameObjectsWithTag("Cannon");
@@ -265,7 +266,7 @@ public class CannonAttribute : MonoBehaviour {
         newShot.GetComponent<MouseLook>().rotationY = GetComponent<MouseLook>().rotationY;
         transform.FindChild("Main Camera").gameObject.SetActive(false);
         GetComponent<MouseLook>().enabled = false;
-        this.enabled = false;
+        GetComponent<PlayerController>().currentCannon = false;
     }
     virtual public void RightTriggerUp()
     {

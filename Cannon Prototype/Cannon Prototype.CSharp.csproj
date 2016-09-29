@@ -63,8 +63,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CannonAttributes\CannonAttribute.cs" />
+    <Compile Include="Assets\Scripts\CannonAttributes\GrowWhilePressed.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\ItemCreationAttribute.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\Jetpack.cs" />
+    <Compile Include="Assets\Scripts\CannonAttributes\SpawnObjectOnPress.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\StickyAttribute.cs" />
     <Compile Include="Assets\Scripts\CannonScripts\GetPickups.cs" />
     <Compile Include="Assets\Scripts\CannonScripts\MouseLook.cs" />
