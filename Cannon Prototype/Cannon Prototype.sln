@@ -1,7 +1,7 @@
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{ECB91F00-8AF9-BB69-F863-8DA5FD035AFA}") = "Cannon Prototype", "Assembly-CSharp.csproj", "{106CC60F-B6CE-0855-6262-F98B8C064530}"
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cannon Prototype.CSharp", "Cannon Prototype.CSharp.csproj", "{BD169877-4A00-75D7-FE19-862D95B67C1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,15 +9,12 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{106CC60F-B6CE-0855-6262-F98B8C064530}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{106CC60F-B6CE-0855-6262-F98B8C064530}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{106CC60F-B6CE-0855-6262-F98B8C064530}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{106CC60F-B6CE-0855-6262-F98B8C064530}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BD169877-4A00-75D7-FE19-862D95B67C1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BD169877-4A00-75D7-FE19-862D95B67C1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BD169877-4A00-75D7-FE19-862D95B67C1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BD169877-4A00-75D7-FE19-862D95B67C1E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = Assembly-CSharp.csproj
 	EndGlobalSection
 EndGlobal
