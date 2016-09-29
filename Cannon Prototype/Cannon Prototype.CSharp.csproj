@@ -63,14 +63,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CannonAttributes\CannonAttribute.cs" />
+    <Compile Include="Assets\Scripts\CannonAttributes\ItemCreationAttribute.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\Jetpack.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\StickyAttribute.cs" />
     <Compile Include="Assets\Scripts\CannonScripts\GetPickups.cs" />
     <Compile Include="Assets\Scripts\CannonScripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\CannonScripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\CannonScripts\PlayerInput.cs" />
-    <Compile Include="Assets\Scripts\CannonScripts\PlayerMovement.cs" />
-    <Compile Include="Assets\Scripts\CannonScripts\Shoot.cs" />
     <Compile Include="Assets\Scripts\SendPowerUp.cs" />
     <Compile Include="Assets\Scripts\StartMenu.cs" />
     <Compile Include="Assets\Scripts\WorldScripts\LoseOnTouch.cs" />
