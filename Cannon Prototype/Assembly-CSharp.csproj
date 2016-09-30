@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\StickOnCollide.cs" />
      <Compile Include="Assets\Scripts\StickyAttribute.cs" />
      <Compile Include="Assets\Scripts\WinOnTouch.cs" />
+     <Compile Include="Assets\SimpleSmoothMouseLook.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

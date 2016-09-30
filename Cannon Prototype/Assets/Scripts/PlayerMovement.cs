@@ -2,28 +2,29 @@
 using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
+    public float speedScale = 1.0f;
 
     // Update is called once per frame
     void Update() {
         if (Input.GetKey(KeyCode.W))
         {
             Vector3 forwardMovement = new Vector3(transform.forward.x, 0, transform.forward.z);
-            GetComponent<Rigidbody>().AddForce(forwardMovement * 0.1f, ForceMode.Impulse);
+            GetComponent<Rigidbody>().AddForce(forwardMovement * speedScale);          
         }
         if (Input.GetKey(KeyCode.S))
         {
             Vector3 forwardMovement = new Vector3(transform.forward.x, 0, transform.forward.z);
-            GetComponent<Rigidbody>().AddForce(-forwardMovement * 0.1f, ForceMode.Impulse);
+            GetComponent<Rigidbody>().AddForce(-forwardMovement * speedScale);
         }
         if (Input.GetKey(KeyCode.A))
         {
             Vector3 forwardMovement = new Vector3(-transform.right.x, 0, -transform.right.z);
-            GetComponent<Rigidbody>().AddForce(forwardMovement * 0.1f, ForceMode.Impulse);
+            GetComponent<Rigidbody>().AddForce(forwardMovement * speedScale);
         }
         if (Input.GetKey(KeyCode.D))
         {
             Vector3 forwardMovement = new Vector3(transform.right.x, 0, transform.right.z);
-            GetComponent<Rigidbody>().AddForce(forwardMovement * 0.1f, ForceMode.Impulse);
+            GetComponent<Rigidbody>().AddForce(forwardMovement * speedScale);
         }
         if (Input.GetKeyDown(KeyCode.Q) || Input.GetKeyDown(KeyCode.E))
         {
