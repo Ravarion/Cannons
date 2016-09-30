@@ -38,32 +38,36 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>E:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>D:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>E:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>D:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\GetPickups.cs" />
-     <Compile Include="Assets\Scripts\Jetpack.cs" />
+     <Compile Include="Assets\Scripts\CannonAttributes\CannonAttribute.cs" />
+     <Compile Include="Assets\Scripts\CannonAttributes\GrowWhilePressed.cs" />
+     <Compile Include="Assets\Scripts\CannonAttributes\ItemCreationAttribute.cs" />
+     <Compile Include="Assets\Scripts\CannonAttributes\Jetpack.cs" />
+     <Compile Include="Assets\Scripts\CannonAttributes\SpawnObjectOnPress.cs" />
+     <Compile Include="Assets\Scripts\CannonAttributes\StickyAttribute.cs" />
+     <Compile Include="Assets\Scripts\CannonScripts\GetPickups.cs" />
+     <Compile Include="Assets\Scripts\CannonScripts\MouseLook.cs" />
+     <Compile Include="Assets\Scripts\CannonScripts\PlayerController.cs" />
+     <Compile Include="Assets\Scripts\CannonScripts\PlayerInput.cs" />
      <Compile Include="Assets\Scripts\JetpackPickUp.cs" />
-     <Compile Include="Assets\Scripts\LoseOnTouch.cs" />
-     <Compile Include="Assets\Scripts\MouseLook.cs" />
-     <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\SendPowerUp.cs" />
-     <Compile Include="Assets\Scripts\Shoot.cs" />
      <Compile Include="Assets\Scripts\StartMenu.cs" />
-     <Compile Include="Assets\Scripts\StickOnCollide.cs" />
-     <Compile Include="Assets\Scripts\StickyAttribute.cs" />
-     <Compile Include="Assets\Scripts\WinOnTouch.cs" />
+     <Compile Include="Assets\Scripts\WorldScripts\LoseOnTouch.cs" />
+     <Compile Include="Assets\Scripts\WorldScripts\StickOnCollide.cs" />
+     <Compile Include="Assets\Scripts\WorldScripts\WinOnTouch.cs" />
      <Compile Include="Assets\SimpleSmoothMouseLook.cs" />
  <Reference Include="UnityEngine.UI">
- <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>E:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

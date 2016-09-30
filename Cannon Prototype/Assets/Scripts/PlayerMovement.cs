@@ -78,13 +78,13 @@ public class PlayerMovement : MonoBehaviour {
             //Switch next object on
             cannonArray[switchIndex].transform.FindChild("Main Camera").gameObject.SetActive(true);
             cannonArray[switchIndex].GetComponent<MouseLook>().enabled = true;
-            cannonArray[switchIndex].GetComponent<Shoot>().enabled = true;
+            //cannonArray[switchIndex].GetComponent<Shoot>().enabled = true;
             cannonArray[switchIndex].GetComponent<PlayerMovement>().enabled = true;
             //Switch current object off
             transform.FindChild("Main Camera").gameObject.SetActive(false);
             GetComponent<Rigidbody>().freezeRotation = true;
             GetComponent<MouseLook>().enabled = false;
-            GetComponent<Shoot>().enabled = false;
+            //GetComponent<Shoot>().enabled = false;
             this.enabled = false;
         }
     }
