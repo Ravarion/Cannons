@@ -12,6 +12,7 @@ public class CannonAttribute : MonoBehaviour {
         {
             return;
         }
+		print (true);
         Vector3 movementDirection = new Vector3(transform.forward.x, 0, transform.forward.z) * y + new Vector3(transform.right.x, 0, transform.right.z) * x;
         GetComponent<Rigidbody>().AddForce(movementDirection * 0.1f, ForceMode.Impulse);
     }
