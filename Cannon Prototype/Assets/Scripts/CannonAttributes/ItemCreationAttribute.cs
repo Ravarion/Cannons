@@ -3,11 +3,15 @@ using System.Collections;
 
 public class ItemCreationAttribute : CannonAttribute {
 
+    public float blowback;
+
     public override void RightTriggerDown()
     {
         if(GameObject.FindGameObjectWithTag("ObjectCapsule") == null)
         {
-            foreach(GameObject spawnedObject in GameObject.FindGameObjectsWithTag("SpawnedObject"))
+            blowback = -25;
+            GetComponent<Rigidbody>().AddForce(transform.forward * blowback);
+            foreach (GameObject spawnedObject in GameObject.FindGameObjectsWithTag("SpawnedObject"))
             {
                 if(spawnedObject.GetComponent<GrowWhilePressed>().isGrowing)
                 {
