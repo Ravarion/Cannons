@@ -2,7 +2,9 @@
 using System.Collections;
 
 public class Jetpack : CannonAttribute {
-	
+
+    public GameObject particleEffect;
+
     public override void AHold()
     {
         Vector3 forwardMovement = new Vector3(0, 1, 0);

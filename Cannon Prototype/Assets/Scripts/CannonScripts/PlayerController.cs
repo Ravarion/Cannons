@@ -5,6 +5,10 @@ public class PlayerController : MonoBehaviour {
 	public Color pickupGetColor = Color.blue;
 	public Color originalColor = Color.gray;
 
+    public Transform shotSpawnPos;
+
+    public GameObject toShootDefault;
+
     public bool currentCannon = false;
 
     void Start()
