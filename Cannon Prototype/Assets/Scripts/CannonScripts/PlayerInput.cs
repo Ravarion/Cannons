@@ -5,14 +5,34 @@ public class PlayerInput : MonoBehaviour {
 
     void Update()
     {
-        //Leftstick Movement
-        GetComponent<CannonAttribute>().LeftStickMovement(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+        foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
+        {
+            if(attribute == GetComponents<CannonAttribute>()[GetComponents<CannonAttribute>().Length-1])
+            {
+                attribute.LeftStickMovement(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+                break;
+            }
+            if(attribute.LeftStickMovement(true))
+            {
+                attribute.LeftStickMovement(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+                break;
+            }
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
             foreach(CannonAttribute attribute in GetComponents<CannonAttribute>())
             {
-                attribute.RightTriggerDown();
+                if (attribute == GetComponents<CannonAttribute>()[GetComponents<CannonAttribute>().Length - 1])
+                {
+                    attribute.RightTriggerDown();
+                    break;
+                }
+                if (attribute.RightTriggerDown(true))
+                {
+                    attribute.RightTriggerDown();
+                    break;
+                }
             }
         }
         if(Input.GetKey(KeyCode.Space))

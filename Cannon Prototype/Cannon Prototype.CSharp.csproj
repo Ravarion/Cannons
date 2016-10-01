@@ -72,11 +72,15 @@
     <Compile Include="Assets\Scripts\CannonScripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\CannonScripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\CannonScripts\PlayerInput.cs" />
+    <Compile Include="Assets\Scripts\JetpackPickUp.cs" />
     <Compile Include="Assets\Scripts\SendPowerUp.cs" />
     <Compile Include="Assets\Scripts\StartMenu.cs" />
+    <Compile Include="Assets\Scripts\Utility\Destroy.cs" />
     <Compile Include="Assets\Scripts\WorldScripts\LoseOnTouch.cs" />
+    <Compile Include="Assets\Scripts\WorldScripts\PlayerSettings.cs" />
     <Compile Include="Assets\Scripts\WorldScripts\StickOnCollide.cs" />
     <Compile Include="Assets\Scripts\WorldScripts\WinOnTouch.cs" />
+    <Compile Include="Assets\SimpleSmoothMouseLook.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
