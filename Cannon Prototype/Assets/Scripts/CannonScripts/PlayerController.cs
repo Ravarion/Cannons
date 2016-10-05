@@ -41,7 +41,19 @@ public class PlayerController : MonoBehaviour {
         }
         if (Input.GetKey(KeyCode.Space))
         {
-            GetComponent<CannonAttribute>().AHold();
+            foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
+            {
+                if (attribute == GetComponents<CannonAttribute>()[GetComponents<CannonAttribute>().Length - 1])
+                {
+                    attribute.AHold();
+                    break;
+                }
+                if (attribute.AHold(true))
+                {
+                    attribute.AHold();
+                    break;
+                }
+            }
         }
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -60,7 +72,7 @@ public class PlayerController : MonoBehaviour {
 
     //when this object is created, it is subscribed to the event GenericPowerUpAbility
     void OnEnable(){
-        JetpackPickUp.JetPackOn += GenericPowerUpAbility;
+        //JetpackPickUp.JetPackOn += GenericPowerUpAbility;
 	}
 	//when the event GenericPowerUpAbility occurs, change color to pickupGetColor
 	void GenericPowerUpAbility(){

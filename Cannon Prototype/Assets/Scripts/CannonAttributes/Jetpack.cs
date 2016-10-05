@@ -5,6 +5,15 @@ public class Jetpack : CannonAttribute {
 
     public GameObject particleEffect;
 
+    public override void Start()
+    {
+        base.Start();
+        if (particleEffect == null)
+        {
+            particleEffect = Resources.Load("Jetpack Particle") as GameObject;
+        }
+    }
+
     public override bool AHold(bool checkOverwrite)
     {
         return true;

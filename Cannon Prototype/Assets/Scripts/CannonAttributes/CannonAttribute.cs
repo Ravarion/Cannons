@@ -6,6 +6,18 @@ public class CannonAttribute : MonoBehaviour {
     public GameObject toShoot;
     public Transform spawnPos;
 
+    virtual public void Start()
+    {
+        if (spawnPos == null)
+        {
+            spawnPos = transform.FindChild("Cylinder").FindChild("SpawnPoint").transform;
+        }
+        if(toShoot == null)
+        {
+            toShoot = Resources.Load("Prefabs/Cannon") as GameObject;
+        }
+    }
+
     virtual public void LeftStickMovement(float x, float y)
     {
         if(!GetComponent<PlayerController>().currentCannon)
