@@ -268,8 +268,6 @@ public class CannonAttribute : MonoBehaviour {
         {
             return;
         }
-<<<<<<< HEAD
-=======
         if (transform.localScale.x < 0.1f)
         {
             return;
@@ -286,7 +284,6 @@ public class CannonAttribute : MonoBehaviour {
         transform.FindChild("Main Camera").gameObject.SetActive(false);
         GetComponent<MouseLook>().enabled = false;
         GetComponent<PlayerController>().currentCannon = false;
->>>>>>> 46c1ca2ce4cc305af8e600fda854632344130e54
     }
     virtual public void RightTriggerUp()
     {

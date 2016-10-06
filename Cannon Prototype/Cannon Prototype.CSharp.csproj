@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CannonAttributes\CannonAttribute.cs" />
+    <Compile Include="Assets\Scripts\CannonAttributes\Discplacement.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\GrowWhilePressed.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\ItemCreationAttribute.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\Jetpack.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="Assets\Scripts\CannonScripts\GetPickups.cs" />
     <Compile Include="Assets\Scripts\CannonScripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\CannonScripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\CannonScripts\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\JetpackPickUp.cs" />
     <Compile Include="Assets\Scripts\SendPowerUp.cs" />
     <Compile Include="Assets\Scripts\StartMenu.cs" />

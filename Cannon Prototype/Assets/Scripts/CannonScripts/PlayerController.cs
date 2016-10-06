@@ -55,6 +55,22 @@ public class PlayerController : MonoBehaviour {
                 }
             }
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
+            {
+                if (attribute == GetComponents<CannonAttribute>()[GetComponents<CannonAttribute>().Length - 1])
+                {
+                    attribute.ADown();
+                    break;
+                }
+                if (attribute.ADown(true))
+                {
+                    attribute.ADown();
+                    break;
+                }
+            }
+        }
         if (Input.GetKeyDown(KeyCode.Q))
         {
             GetComponent<CannonAttribute>().DPadMovement(-1, 0);
