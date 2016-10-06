@@ -63,6 +63,10 @@ public class PlayerController : MonoBehaviour {
         {
             GetComponent<CannonAttribute>().DPadMovement(1, 0);
         }
+        if(Input.GetKeyDown(KeyCode.Z))
+        {
+            GetComponent<CannonAttribute>().SwitchTo(GameObject.FindGameObjectWithTag("MainCannon"));
+        }
     }
 
     void OnCollisionStay(Collision col)
@@ -70,10 +74,6 @@ public class PlayerController : MonoBehaviour {
         //Todo: Update grounded
     }
 
-    //when this object is created, it is subscribed to the event GenericPowerUpAbility
-    void OnEnable(){
-        //JetpackPickUp.JetPackOn += GenericPowerUpAbility;
-	}
 	//when the event GenericPowerUpAbility occurs, change color to pickupGetColor
 	void GenericPowerUpAbility(){
 		this.gameObject.GetComponent<Renderer>().material.SetColor("_Color", pickupGetColor);

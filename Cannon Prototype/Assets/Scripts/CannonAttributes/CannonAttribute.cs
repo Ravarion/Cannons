@@ -12,10 +12,19 @@ public class CannonAttribute : MonoBehaviour {
         {
             spawnPos = transform.FindChild("Cylinder").FindChild("SpawnPoint").transform;
         }
-        if(toShoot == null)
-        {
-            toShoot = Resources.Load("Prefabs/Cannon") as GameObject;
-        }
+    }
+
+    virtual public void SwitchTo(GameObject cannon)
+    {
+        //Switch next object on
+        cannon.transform.FindChild("Main Camera").gameObject.SetActive(true);
+        cannon.GetComponent<MouseLook>().enabled = true;
+        cannon.GetComponent<PlayerController>().currentCannon = true;
+        //Switch current object off
+        GetComponent<PlayerController>().currentCannon = false;
+        transform.FindChild("Main Camera").gameObject.SetActive(false);
+        GetComponent<Rigidbody>().freezeRotation = true;
+        GetComponent<MouseLook>().enabled = false;
     }
 
     virtual public void LeftStickMovement(float x, float y)
@@ -93,15 +102,7 @@ public class CannonAttribute : MonoBehaviour {
                     }
                 }
             }
-            //Switch next object on
-            cannonArray[switchIndex].transform.FindChild("Main Camera").gameObject.SetActive(true);
-            cannonArray[switchIndex].GetComponent<MouseLook>().enabled = true;
-            cannonArray[switchIndex].GetComponent<PlayerController>().currentCannon = true;
-            //Switch current object off
-            GetComponent<PlayerController>().currentCannon = false;
-            transform.FindChild("Main Camera").gameObject.SetActive(false);
-            GetComponent<Rigidbody>().freezeRotation = true;
-            GetComponent<MouseLook>().enabled = false;
+            SwitchTo(cannonArray[switchIndex]);
         }
     }
 
@@ -265,21 +266,6 @@ public class CannonAttribute : MonoBehaviour {
         {
             return;
         }
-        if (transform.localScale.x < 0.1f)
-        {
-            return;
-        }
-        GameObject newShot = Instantiate(toShoot, spawnPos.position, Quaternion.identity) as GameObject;
-        newShot.GetComponent<Rigidbody>().AddForce(transform.forward * 20 * GetComponent<Rigidbody>().mass, ForceMode.Impulse);
-        newShot.transform.rotation = transform.rotation;
-        newShot.transform.localScale = transform.localScale / 2;
-        newShot.GetComponent<Rigidbody>().mass = GetComponent<Rigidbody>().mass;
-        newShot.transform.FindChild("Main Camera").localPosition = new Vector3(transform.FindChild("Main Camera").localPosition.x, transform.FindChild("Main Camera").localPosition.y, transform.FindChild("Main Camera").localPosition.z - transform.localScale.z * 2);
-        newShot.GetComponent<MouseLook>().rotationX = GetComponent<MouseLook>().rotationX;
-        newShot.GetComponent<MouseLook>().rotationY = GetComponent<MouseLook>().rotationY;
-        transform.FindChild("Main Camera").gameObject.SetActive(false);
-        GetComponent<MouseLook>().enabled = false;
-        GetComponent<PlayerController>().currentCannon = false;
     }
     virtual public void RightTriggerUp()
     {

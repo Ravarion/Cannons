@@ -26,8 +26,9 @@ public class Jetpack : CannonAttribute {
             return;
         }
 
-        GameObject particles = Instantiate(particleEffect, transform.position - transform.up*1.5f, Quaternion.Euler(90,0,0)) as GameObject;
-        particles.transform.parent = gameObject.transform;
+        GameObject particles = Instantiate(particleEffect, transform.position - transform.up*1.5f*transform.localScale.x, Quaternion.Euler(90,0,0)) as GameObject;
+        particles.transform.localScale = transform.localScale;
+        particles.transform.parent = transform;
 
         Vector3 forwardMovement = new Vector3(0, 1, 0);
         if (GetComponent<Rigidbody>().velocity.y >= 5)
