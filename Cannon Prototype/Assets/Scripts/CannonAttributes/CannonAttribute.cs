@@ -5,6 +5,7 @@ public class CannonAttribute : MonoBehaviour {
 
     public GameObject toShoot;
     public Transform spawnPos;
+    public float blowback;
 
     virtual public void LeftStickMovement(float x, float y)
     {
@@ -12,7 +13,7 @@ public class CannonAttribute : MonoBehaviour {
         {
             return;
         }
-		print (true);
+		//print (true);
         Vector3 movementDirection = new Vector3(transform.forward.x, 0, transform.forward.z) * y + new Vector3(transform.right.x, 0, transform.right.z) * x;
         GetComponent<Rigidbody>().AddForce(movementDirection * 0.1f, ForceMode.Impulse);
     }
@@ -179,6 +180,7 @@ public class CannonAttribute : MonoBehaviour {
         {
             return;
         }
+        GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
     }
 
     virtual public void LeftBumperDown()
@@ -257,6 +259,7 @@ public class CannonAttribute : MonoBehaviour {
         {
             return;
         }
+        GetComponent<Rigidbody>().AddForce(transform.forward * blowback);
         GameObject newShot = Instantiate(toShoot, spawnPos.position, Quaternion.identity) as GameObject;
         newShot.GetComponent<Rigidbody>().AddForce(transform.forward * 20 * GetComponent<Rigidbody>().mass, ForceMode.Impulse);
         newShot.transform.rotation = transform.rotation;

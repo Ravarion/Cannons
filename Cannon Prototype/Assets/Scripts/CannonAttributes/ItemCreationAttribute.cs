@@ -3,8 +3,6 @@ using System.Collections;
 
 public class ItemCreationAttribute : CannonAttribute {
 
-    public float blowback;
-
     public override void RightTriggerDown()
     {
         if(GameObject.FindGameObjectWithTag("ObjectCapsule") == null)
