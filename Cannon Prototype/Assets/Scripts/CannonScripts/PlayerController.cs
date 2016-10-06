@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour {
 	public Color originalColor = Color.gray;
 	public bool currentCannon = true;
     public bool isGrounded = false;
+    private bool m_isAxisInUse = false;
 
     void Update()
     {
@@ -22,8 +23,21 @@ public class PlayerController : MonoBehaviour {
                 break;
             }
         }
+        foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
+        {
+            if (attribute == GetComponents<CannonAttribute>()[GetComponents<CannonAttribute>().Length - 1])
+            {
+                attribute.RightStickMovement(Input.GetAxis("Right_Stick_X"), Input.GetAxis("Right_Stick_Y"));
+                break;
+            }
+            if (attribute.RightStickMovement(true))
+            {
+                attribute.RightStickMovement(Input.GetAxis("Right_Stick_X"), Input.GetAxis("Right_Stick_Y"));
+                break;
+            }
+        }
 
-        if (Input.GetMouseButtonDown(0))
+        /*if (Input.GetButtonDown("Fire1"))
         {
             foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
             {
@@ -38,8 +52,32 @@ public class PlayerController : MonoBehaviour {
                     break;
                 }
             }
+        }*/
+        if (Input.GetAxisRaw("Triggers") < 0 || Input.GetButtonDown("Fire1"))
+        {
+            if (m_isAxisInUse == false)
+            {
+                foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
+                {
+                    if (attribute == GetComponents<CannonAttribute>()[GetComponents<CannonAttribute>().Length - 1])
+                    {
+                        attribute.RightTriggerDown();
+                        m_isAxisInUse = true;
+                        break;
+                    }
+                    if (attribute.RightTriggerDown(true))
+                    {
+                        attribute.RightTriggerDown();
+                        break;
+                    }
+                }
+            }
         }
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetAxisRaw("Triggers") == 0)
+        {
+            m_isAxisInUse = false;
+        }
+        if (Input.GetButton("Right_Bumper"))
         {
             foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
             {
@@ -55,11 +93,11 @@ public class PlayerController : MonoBehaviour {
                 }
             }
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetAxisRaw("DPad_X") < 0)
         {
             GetComponent<CannonAttribute>().DPadMovement(-1, 0);
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetAxisRaw("DPad_X") > 0)
         {
             GetComponent<CannonAttribute>().DPadMovement(1, 0);
         }

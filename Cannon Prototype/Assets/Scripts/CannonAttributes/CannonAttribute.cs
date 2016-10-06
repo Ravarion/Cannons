@@ -33,6 +33,9 @@ public class CannonAttribute : MonoBehaviour {
         {
             return;
         }
+        Quaternion rotation = Quaternion.Euler(new Vector3(0, x, 0) * 18 * Time.deltaTime);
+
+        transform.Rotate(new Vector3(0, x, 0), 18 * Time.deltaTime);
         //Not used yet.  Currently using MouseLook script
     }
 
@@ -350,100 +353,27 @@ public class CannonAttribute : MonoBehaviour {
     virtual public bool BUp(bool checkOverwrite){return false;}
     virtual public bool BHold(bool checkOverwrite){return false;}
     virtual public bool XDown(bool checkOverwrite){return false;}
-    virtual public bool XUp(bool checkOverwrite)
-    {
-        return false;
-    }
-    virtual public bool XHold(bool checkOverwrite)
-    {
-        return false;
-    }
-
-    virtual public bool YDown(bool checkOverwrite)
-    {
-        return false;
-    }
-    virtual public bool YUp(bool checkOverwrite)
-    {
-        return false;
-    }
-    virtual public bool YHold(bool checkOverwrite)
-    {
-        return false;
-    }
-
-    virtual public bool LeftBumperDown(bool checkOverwrite)
-    {
-        return false;
-    }
-    virtual public bool LeftBumperUp(bool checkOverwrite)
-    {
-        return false;
-    }
-    virtual public bool LeftBumperHold(bool checkOverwrite)
-    {
-        return false;
-    }
-
-    virtual public bool RightBumperDown(bool checkOverwrite)
-    {
-        return false;
-    }
-    virtual public bool RightBumperUp(bool checkOverwrite)
-    {
-        return false;
-    }
-    virtual public bool RightBumperHold(bool checkOverwrite)
-    {
-        return false;
-    }
-
-    virtual public bool LeftTriggerDown(bool checkOverwrite)
-    {
-        return false;
-    }
-    virtual public bool LeftTriggerUp(bool checkOverwrite)
-    {
-        return false;
-    }
-    virtual public bool LeftTriggerHold(bool checkOverwrite)
-    {
-        return false;
-    }
-
-    virtual public bool RightTriggerDown(bool checkOverwrite)
-    {
-        return false;
-    }
-    virtual public bool RightTriggerUp(bool checkOverwrite)
-    {
-        return false;
-    }
-    virtual public bool RightTriggerHold(bool checkOverwrite)
-    {
-        return false;
-    }
-
-    virtual public bool StartDown(bool checkOverwrite)
-    {
-        return false;
-    }
-    virtual public bool StartUp(bool checkOverwrite)
-    {
-        return false;
-    }
-    virtual public bool StartHold(bool checkOverwrite)
-    {
-        return false;
-    }
-
-    virtual public bool SelectDown(bool checkOverwrite)
-    {
-        return false;
-    }
-    virtual public bool SelectUp(bool checkOverwrite)
-    {
-        return false;
-    }
+    virtual public bool XUp(bool checkOverwrite){return false;}
+    virtual public bool XHold(bool checkOverwrite){return false;}
+    virtual public bool YDown(bool checkOverwrite){return false;}
+    virtual public bool YUp(bool checkOverwrite){return false;}
+    virtual public bool YHold(bool checkOverwrite){return false;}
+    virtual public bool LeftBumperDown(bool checkOverwrite){return false;}
+    virtual public bool LeftBumperUp(bool checkOverwrite){return false;}
+    virtual public bool LeftBumperHold(bool checkOverwrite){return false;}
+    virtual public bool RightBumperDown(bool checkOverwrite){return false;}
+    virtual public bool RightBumperUp(bool checkOverwrite){return false;}
+    virtual public bool RightBumperHold(bool checkOverwrite){return false;}
+    virtual public bool LeftTriggerDown(bool checkOverwrite){return false;}
+    virtual public bool LeftTriggerUp(bool checkOverwrite){return false;}
+    virtual public bool LeftTriggerHold(bool checkOverwrite){return false;}
+    virtual public bool RightTriggerDown(bool checkOverwrite){return false;}
+    virtual public bool RightTriggerUp(bool checkOverwrite){return false;}
+    virtual public bool RightTriggerHold(bool checkOverwrite){return false;}
+    virtual public bool StartDown(bool checkOverwrite){return false;}
+    virtual public bool StartUp(bool checkOverwrite){return false;}
+    virtual public bool StartHold(bool checkOverwrite){return false;}
+    virtual public bool SelectDown(bool checkOverwrite){return false;}
+    virtual public bool SelectUp(bool checkOverwrite){return false;}
     virtual public bool SelectHold(bool checkOverwrite){return false;}
 }
