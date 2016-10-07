@@ -6,7 +6,9 @@ public class PlayerController : MonoBehaviour {
 	public Color originalColor = Color.gray;
 	public bool currentCannon = true;
     public bool isGrounded = false;
-    private bool m_isAxisInUse = false;
+    private bool TriggersInUse = false;
+    private bool XDPadInUse = false;
+    private bool YDPadInUse = false;
 
     void Update()
     {
@@ -37,46 +39,37 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        /*if (Input.GetButtonDown("Fire1"))
+        
+        if (Input.GetAxisRaw("Triggers") < -0.5 || Input.GetButtonDown("Fire1")) //Right Trigger
         {
-            foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
-            {
-                if (attribute == GetComponents<CannonAttribute>()[GetComponents<CannonAttribute>().Length - 1])
-                {
-                    attribute.RightTriggerDown();
-                    break;
-                }
-                if (attribute.RightTriggerDown(true))
-                {
-                    attribute.RightTriggerDown();
-                    break;
-                }
-            }
-        }*/
-        if (Input.GetAxisRaw("Triggers") < 0 || Input.GetButtonDown("Fire1"))
-        {
-            if (m_isAxisInUse == false)
+            if (TriggersInUse == false)
             {
                 foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
                 {
                     if (attribute == GetComponents<CannonAttribute>()[GetComponents<CannonAttribute>().Length - 1])
                     {
+                        TriggersInUse = true;
                         attribute.RightTriggerDown();
-                        m_isAxisInUse = true;
                         break;
                     }
                     if (attribute.RightTriggerDown(true))
                     {
+                        TriggersInUse = true;
                         attribute.RightTriggerDown();
                         break;
                     }
                 }
             }
         }
-        if (Input.GetAxisRaw("Triggers") == 0)
+        if (Input.GetAxisRaw("Triggers") > 0.5) //Left Trigger
         {
-            m_isAxisInUse = false;
+            print("Left Trigger!");
         }
+        if (Input.GetAxisRaw("Triggers") > -0.5 && Input.GetAxisRaw("Triggers") < 0.5)
+        {
+            TriggersInUse = false;
+        }
+
         if (Input.GetButton("Right_Bumper"))
         {
             foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
@@ -93,13 +86,72 @@ public class PlayerController : MonoBehaviour {
                 }
             }
         }
-        if (Input.GetAxisRaw("DPad_X") < 0)
+        if (Input.GetButtonDown("Left_Bumper"))
         {
+            print("Left Bumper!");
+        }
+
+        if (Input.GetAxisRaw("DPad_X") < -0.5 && XDPadInUse == false)
+        {
+            XDPadInUse = true;
             GetComponent<CannonAttribute>().DPadMovement(-1, 0);
         }
-        if (Input.GetAxisRaw("DPad_X") > 0)
+        if (Input.GetAxisRaw("DPad_X") > 0.5 && XDPadInUse == false)
         {
+            XDPadInUse = true;
             GetComponent<CannonAttribute>().DPadMovement(1, 0);
+        }
+        if (Input.GetAxisRaw("DPad_X") > -0.5 && Input.GetAxisRaw("DPad_X") < 0.5)
+        {
+            XDPadInUse = false;
+        }
+
+        if (Input.GetAxisRaw("DPad_Y") < -0.5 && YDPadInUse == false)
+        {
+            YDPadInUse = true;
+        }
+        if (Input.GetAxisRaw("DPad_Y") > 0.5 && YDPadInUse == false)
+        {
+            YDPadInUse = true;
+        }
+        if (Input.GetAxisRaw("DPad_Y") > -0.5 && Input.GetAxisRaw("DPad_Y") < 0.5)
+        {
+            YDPadInUse = false;
+        }
+
+        if(Input.GetButtonDown("A"))
+        {
+            print("A");
+        }
+        if (Input.GetButtonDown("B"))
+        {
+            print("B");
+        }
+        if (Input.GetButtonDown("X"))
+        {
+            print("X");
+        }
+        if (Input.GetButtonDown("Y"))
+        {
+            print("Y");
+        }
+
+        if (Input.GetButtonDown("Start"))
+        {
+            print("Start");
+        }
+        if (Input.GetButtonDown("Back"))
+        {
+            print("Back");
+        }
+
+        if (Input.GetButtonDown("Left_Stick_Click"))
+        {
+            print("Left Stick Click");
+        }
+        if (Input.GetButtonDown("Right_Stick_Click"))
+        {
+            print("Right Stick Click");
         }
     }
 

@@ -64,20 +64,23 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CannonAttributes\CannonAttribute.cs" />
+    <Compile Include="Assets\Scripts\CannonAttributes\Discplacement.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\GrowWhilePressed.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\ItemCreationAttribute.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\Jetpack.cs" />
+    <Compile Include="Assets\Scripts\CannonAttributes\MainCannonAttribute.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\SpawnObjectOnPress.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\StickyAttribute.cs" />
-    <Compile Include="Assets\Scripts\CannonAttributes\StickyAttributeTest.cs" />
     <Compile Include="Assets\Scripts\CannonScripts\GetPickups.cs" />
     <Compile Include="Assets\Scripts\CannonScripts\MouseLook.cs" />
     <Compile Include="Assets\Scripts\CannonScripts\PlayerController.cs" />
+    <Compile Include="Assets\Scripts\CannonScripts\PlayerInput.cs" />
     <Compile Include="Assets\Scripts\JetpackPickUp.cs" />
     <Compile Include="Assets\Scripts\SendPowerUp.cs" />
     <Compile Include="Assets\Scripts\StartMenu.cs" />
     <Compile Include="Assets\Scripts\Utility\Destroy.cs" />
     <Compile Include="Assets\Scripts\WorldScripts\LoseOnTouch.cs" />
+    <Compile Include="Assets\Scripts\WorldScripts\Pickup.cs" />
     <Compile Include="Assets\Scripts\WorldScripts\PlayerSettings.cs" />
     <Compile Include="Assets\Scripts\WorldScripts\StickOnCollide.cs" />
     <Compile Include="Assets\Scripts\WorldScripts\WinOnTouch.cs" />

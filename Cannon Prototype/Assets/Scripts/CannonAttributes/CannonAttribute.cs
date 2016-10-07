@@ -5,6 +5,7 @@ public class CannonAttribute : MonoBehaviour {
 
     public GameObject toShoot;
     public Transform spawnPos;
+    public float blowback;
 
     virtual public void Start()
     {
@@ -12,10 +13,19 @@ public class CannonAttribute : MonoBehaviour {
         {
             spawnPos = transform.FindChild("Cylinder").FindChild("SpawnPoint").transform;
         }
-        if(toShoot == null)
-        {
-            toShoot = Resources.Load("Prefabs/Cannon") as GameObject;
-        }
+    }
+
+    virtual public void SwitchTo(GameObject cannon)
+    {
+        //Switch next object on
+        cannon.transform.FindChild("Main Camera").gameObject.SetActive(true);
+        cannon.GetComponent<MouseLook>().enabled = true;
+        cannon.GetComponent<PlayerController>().currentCannon = true;
+        //Switch current object off
+        GetComponent<PlayerController>().currentCannon = false;
+        transform.FindChild("Main Camera").gameObject.SetActive(false);
+        GetComponent<Rigidbody>().freezeRotation = true;
+        GetComponent<MouseLook>().enabled = false;
     }
 
     virtual public void LeftStickMovement(float x, float y)
@@ -96,15 +106,7 @@ public class CannonAttribute : MonoBehaviour {
                     }
                 }
             }
-            //Switch next object on
-            cannonArray[switchIndex].transform.FindChild("Main Camera").gameObject.SetActive(true);
-            cannonArray[switchIndex].GetComponent<MouseLook>().enabled = true;
-            cannonArray[switchIndex].GetComponent<PlayerController>().currentCannon = true;
-            //Switch current object off
-            GetComponent<PlayerController>().currentCannon = false;
-            transform.FindChild("Main Camera").gameObject.SetActive(false);
-            GetComponent<Rigidbody>().freezeRotation = true;
-            GetComponent<MouseLook>().enabled = false;
+            SwitchTo(cannonArray[switchIndex]);
         }
     }
 
@@ -194,6 +196,7 @@ public class CannonAttribute : MonoBehaviour {
         {
             return;
         }
+        GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
     }
 
     virtual public void LeftBumperDown()
@@ -272,6 +275,7 @@ public class CannonAttribute : MonoBehaviour {
         {
             return;
         }
+        GetComponent<Rigidbody>().AddForce(transform.forward * blowback);
         GameObject newShot = Instantiate(toShoot, spawnPos.position, Quaternion.identity) as GameObject;
         newShot.GetComponent<Rigidbody>().AddForce(transform.forward * 20 * GetComponent<Rigidbody>().mass, ForceMode.Impulse);
         newShot.transform.rotation = transform.rotation;
