@@ -7,13 +7,33 @@ public class CannonAttribute : MonoBehaviour {
     public Transform spawnPos;
     public float blowback;
 
+    virtual public void Start()
+    {
+        if (spawnPos == null)
+        {
+            spawnPos = transform.FindChild("Cylinder").FindChild("SpawnPoint").transform;
+        }
+    }
+
+    virtual public void SwitchTo(GameObject cannon)
+    {
+        //Switch next object on
+        cannon.transform.FindChild("Main Camera").gameObject.SetActive(true);
+        cannon.GetComponent<MouseLook>().enabled = true;
+        cannon.GetComponent<PlayerController>().currentCannon = true;
+        //Switch current object off
+        GetComponent<PlayerController>().currentCannon = false;
+        transform.FindChild("Main Camera").gameObject.SetActive(false);
+        GetComponent<Rigidbody>().freezeRotation = true;
+        GetComponent<MouseLook>().enabled = false;
+    }
+
     virtual public void LeftStickMovement(float x, float y)
     {
         if(!GetComponent<PlayerController>().currentCannon)
         {
             return;
         }
-		//print (true);
         Vector3 movementDirection = new Vector3(transform.forward.x, 0, transform.forward.z) * y + new Vector3(transform.right.x, 0, transform.right.z) * x;
         GetComponent<Rigidbody>().AddForce(movementDirection * 0.1f, ForceMode.Impulse);
     }
@@ -30,9 +50,10 @@ public class CannonAttribute : MonoBehaviour {
     {
         if (!GetComponent<PlayerController>().currentCannon)
         {
-            print(name);
             return;
         }
+
+        //If left or right is pressed
         if (x <= -0.5 || x >= 0.5)
         {
             int switchIndex = 0;
@@ -82,15 +103,7 @@ public class CannonAttribute : MonoBehaviour {
                     }
                 }
             }
-            //Switch next object on
-            cannonArray[switchIndex].transform.FindChild("Main Camera").gameObject.SetActive(true);
-            cannonArray[switchIndex].GetComponent<MouseLook>().enabled = true;
-            cannonArray[switchIndex].GetComponent<PlayerController>().currentCannon = true;
-            //Switch current object off
-            GetComponent<PlayerController>().currentCannon = false;
-            transform.FindChild("Main Camera").gameObject.SetActive(false);
-            GetComponent<Rigidbody>().freezeRotation = true;
-            GetComponent<MouseLook>().enabled = false;
+            SwitchTo(cannonArray[switchIndex]);
         }
     }
 
@@ -330,4 +343,111 @@ public class CannonAttribute : MonoBehaviour {
             return;
         }
     }
+
+    virtual public bool LeftStickMovement(bool checkOverwrite){return false;}
+    virtual public bool RightStickMovement(bool checkOverwrite){return false;}
+    virtual public bool DPadMovement(bool checkOverwrite){return false;}
+    virtual public bool ADown(bool checkOverwrite){return false;}
+    virtual public bool AUp(bool checkOverwrite){return false;}
+    virtual public bool AHold(bool checkOverwrite){return false;}
+    virtual public bool BDown(bool checkOverwrite){return false;}
+    virtual public bool BUp(bool checkOverwrite){return false;}
+    virtual public bool BHold(bool checkOverwrite){return false;}
+    virtual public bool XDown(bool checkOverwrite){return false;}
+    virtual public bool XUp(bool checkOverwrite)
+    {
+        return false;
+    }
+    virtual public bool XHold(bool checkOverwrite)
+    {
+        return false;
+    }
+
+    virtual public bool YDown(bool checkOverwrite)
+    {
+        return false;
+    }
+    virtual public bool YUp(bool checkOverwrite)
+    {
+        return false;
+    }
+    virtual public bool YHold(bool checkOverwrite)
+    {
+        return false;
+    }
+
+    virtual public bool LeftBumperDown(bool checkOverwrite)
+    {
+        return false;
+    }
+    virtual public bool LeftBumperUp(bool checkOverwrite)
+    {
+        return false;
+    }
+    virtual public bool LeftBumperHold(bool checkOverwrite)
+    {
+        return false;
+    }
+
+    virtual public bool RightBumperDown(bool checkOverwrite)
+    {
+        return false;
+    }
+    virtual public bool RightBumperUp(bool checkOverwrite)
+    {
+        return false;
+    }
+    virtual public bool RightBumperHold(bool checkOverwrite)
+    {
+        return false;
+    }
+
+    virtual public bool LeftTriggerDown(bool checkOverwrite)
+    {
+        return false;
+    }
+    virtual public bool LeftTriggerUp(bool checkOverwrite)
+    {
+        return false;
+    }
+    virtual public bool LeftTriggerHold(bool checkOverwrite)
+    {
+        return false;
+    }
+
+    virtual public bool RightTriggerDown(bool checkOverwrite)
+    {
+        return false;
+    }
+    virtual public bool RightTriggerUp(bool checkOverwrite)
+    {
+        return false;
+    }
+    virtual public bool RightTriggerHold(bool checkOverwrite)
+    {
+        return false;
+    }
+
+    virtual public bool StartDown(bool checkOverwrite)
+    {
+        return false;
+    }
+    virtual public bool StartUp(bool checkOverwrite)
+    {
+        return false;
+    }
+    virtual public bool StartHold(bool checkOverwrite)
+    {
+        return false;
+    }
+
+    virtual public bool SelectDown(bool checkOverwrite)
+    {
+        return false;
+    }
+    virtual public bool SelectUp(bool checkOverwrite)
+    {
+        return false;
+    }
+    virtual public bool SelectHold(bool checkOverwrite){return false;}
 }

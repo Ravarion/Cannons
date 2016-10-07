@@ -42,7 +42,6 @@ public class MouseLook : MonoBehaviour
 
     void Update()
     {
-		//GetComponent<Jetpack> ().enabled = false;
         //Delete unless essential in practice
         //Screen.lockCursor=lockCursor;
 
