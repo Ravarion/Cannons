@@ -1,4 +1,5 @@
 *.stamp
 *.bin
-Cannon Prototype/Temp/
-Cannon Prototype/Library/metadata/
+Cannon Prototype/Temp/*
+Cannon Prototype/Library/metadata/*
+Cannon Prototype/Library/metadata/**/*

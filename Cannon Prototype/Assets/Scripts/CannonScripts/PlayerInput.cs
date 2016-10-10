@@ -19,6 +19,10 @@ public class PlayerInput : MonoBehaviour {
         {
             GetComponent<CannonAttribute>().AHold();
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            GetComponent<CannonAttribute>().ADown();
+        }
         if (Input.GetKeyDown(KeyCode.Q))
         {
             GetComponent<CannonAttribute>().DPadMovement(-1, 0);
@@ -26,6 +30,10 @@ public class PlayerInput : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.E))
         {
             GetComponent<CannonAttribute>().DPadMovement(1, 0);
+        }
+        if (Input.GetKey(KeyCode.Z))
+        {
+            GetComponent<CannonAttribute>().YHold();
         }
     }
 }
