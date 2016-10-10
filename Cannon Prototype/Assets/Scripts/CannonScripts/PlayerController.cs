@@ -6,6 +6,9 @@ public class PlayerController : MonoBehaviour {
 	public Color originalColor = Color.gray;
 	public bool currentCannon = true;
     public bool isGrounded = false;
+    private bool TriggersInUse = false;
+    private bool XDPadInUse = false;
+    private bool YDPadInUse = false;
 
     void Update()
     {
@@ -22,24 +25,52 @@ public class PlayerController : MonoBehaviour {
                 break;
             }
         }
-
-        if (Input.GetMouseButtonDown(0))
+        foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
         {
-            foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
+            if (attribute == GetComponents<CannonAttribute>()[GetComponents<CannonAttribute>().Length - 1])
             {
-                if (attribute == GetComponents<CannonAttribute>()[GetComponents<CannonAttribute>().Length - 1])
+                attribute.RightStickMovement(Input.GetAxis("Right_Stick_X"), Input.GetAxis("Right_Stick_Y"));
+                break;
+            }
+            if (attribute.RightStickMovement(true))
+            {
+                attribute.RightStickMovement(Input.GetAxis("Right_Stick_X"), Input.GetAxis("Right_Stick_Y"));
+                break;
+            }
+        }
+
+        
+        if (Input.GetAxisRaw("Triggers") < -0.5 || Input.GetButtonDown("Fire1")) //Right Trigger
+        {
+            if (TriggersInUse == false)
+            {
+                foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
                 {
-                    attribute.RightTriggerDown();
-                    break;
-                }
-                if (attribute.RightTriggerDown(true))
-                {
-                    attribute.RightTriggerDown();
-                    break;
+                    if (attribute == GetComponents<CannonAttribute>()[GetComponents<CannonAttribute>().Length - 1])
+                    {
+                        TriggersInUse = true;
+                        attribute.RightTriggerDown();
+                        break;
+                    }
+                    if (attribute.RightTriggerDown(true))
+                    {
+                        TriggersInUse = true;
+                        attribute.RightTriggerDown();
+                        break;
+                    }
                 }
             }
         }
-        if (Input.GetKey(KeyCode.Space))
+        if (Input.GetAxisRaw("Triggers") > 0.5) //Left Trigger
+        {
+            print("Left Trigger!");
+        }
+        if (Input.GetAxisRaw("Triggers") > -0.5 && Input.GetAxisRaw("Triggers") < 0.5)
+        {
+            TriggersInUse = false;
+        }
+
+        if (Input.GetButton("Right_Bumper") || Input.GetKey(KeyCode.Space))
         {
             foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
             {
@@ -55,7 +86,7 @@ public class PlayerController : MonoBehaviour {
                 }
             }
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Right_Bumper") || Input.GetKeyDown(KeyCode.Space))
         {
             foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
             {
@@ -71,17 +102,72 @@ public class PlayerController : MonoBehaviour {
                 }
             }
         }
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetButtonDown("Left_Bumper"))
         {
+            print("Left Bumper!");
+        }
+
+        if (Input.GetAxisRaw("DPad_X") < -0.5 && XDPadInUse == false || Input.GetKeyDown(KeyCode.Q))
+        {
+            XDPadInUse = true;
             GetComponent<CannonAttribute>().DPadMovement(-1, 0);
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetAxisRaw("DPad_X") > 0.5 && XDPadInUse == false || Input.GetKeyDown(KeyCode.E))
         {
+            XDPadInUse = true;
             GetComponent<CannonAttribute>().DPadMovement(1, 0);
         }
-        if(Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetAxisRaw("DPad_X") > -0.5 && Input.GetAxisRaw("DPad_X") < 0.5)
         {
-            GetComponent<CannonAttribute>().SwitchTo(GameObject.FindGameObjectWithTag("MainCannon"));
+            XDPadInUse = false;
+        }
+
+        if (Input.GetAxisRaw("DPad_Y") < -0.5 && YDPadInUse == false)
+        {
+            YDPadInUse = true;
+        }
+        if (Input.GetAxisRaw("DPad_Y") > 0.5 && YDPadInUse == false)
+        {
+            YDPadInUse = true;
+        }
+        if (Input.GetAxisRaw("DPad_Y") > -0.5 && Input.GetAxisRaw("DPad_Y") < 0.5)
+        {
+            YDPadInUse = false;
+        }
+
+        if(Input.GetButtonDown("A"))
+        {
+            print("A");
+        }
+        if (Input.GetButtonDown("B"))
+        {
+            print("B");
+        }
+        if (Input.GetButtonDown("X"))
+        {
+            print("X");
+        }
+        if (Input.GetButtonDown("Y"))
+        {
+            print("Y");
+        }
+
+        if (Input.GetButtonDown("Start"))
+        {
+            print("Start");
+        }
+        if (Input.GetButtonDown("Back"))
+        {
+            print("Back");
+        }
+
+        if (Input.GetButtonDown("Left_Stick_Click"))
+        {
+            print("Left Stick Click");
+        }
+        if (Input.GetButtonDown("Right_Stick_Click"))
+        {
+            print("Right Stick Click");
         }
     }
 
@@ -90,6 +176,10 @@ public class PlayerController : MonoBehaviour {
         //Todo: Update grounded
     }
 
+    //when this object is created, it is subscribed to the event GenericPowerUpAbility
+    void OnEnable(){
+        //JetpackPickUp.JetPackOn += GenericPowerUpAbility;
+	}
 	//when the event GenericPowerUpAbility occurs, change color to pickupGetColor
 	void GenericPowerUpAbility(){
 		this.gameObject.GetComponent<Renderer>().material.SetColor("_Color", pickupGetColor);
