@@ -1,0 +1,36 @@
+﻿using UnityEngine;
+using System.Collections;
+
+public class Glider : CannonAttribute {
+
+    public float liftForce = 0.5f;
+    private bool glideBreak = false;
+
+	// Use this for initialization
+	void Start ()
+    {
+
+	}
+
+    //Provides constant upward Force to slow desent
+    void FixedUpdate()
+    {
+        if(glideBreak == false)
+        {
+            GetComponent<Rigidbody>().AddForce(Vector3.up * liftForce);
+        }
+    }
+	
+	// Update is called once per frame
+	void Update () {
+	
+	}
+
+    //stops glide force on collision
+    //NOT IMPLEMENTED!
+    void OnCollisionEnter(Collision col)
+    {
+//        gameObject.AddComponent<CannonAttribute>();
+//        Destroy(this);
+    }
+}
