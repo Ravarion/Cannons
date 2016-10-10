@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour {
             TriggersInUse = false;
         }
 
-        if (Input.GetButton("Right_Bumper"))
+        if (Input.GetButton("Right_Bumper") || Input.GetKey(KeyCode.Space))
         {
             foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
             {
@@ -86,27 +86,37 @@ public class PlayerController : MonoBehaviour {
                 }
             }
         }
-<<<<<<< HEAD
-        if (Input.GetAxisRaw("DPad_X") < 0)
-=======
+        if (Input.GetButtonDown("Right_Bumper") || Input.GetKeyDown(KeyCode.Space))
+        {
+            foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
+            {
+                if (attribute == GetComponents<CannonAttribute>()[GetComponents<CannonAttribute>().Length - 1])
+                {
+                    attribute.ADown();
+                    break;
+                }
+                if (attribute.ADown(true))
+                {
+                    attribute.ADown();
+                    break;
+                }
+            }
+        }
         if (Input.GetButtonDown("Left_Bumper"))
         {
             print("Left Bumper!");
         }
 
-        if (Input.GetAxisRaw("DPad_X") < -0.5 && XDPadInUse == false)
->>>>>>> 14702db18b252bbda1b9e7f9a26846e00dc68fc9
+        if (Input.GetAxisRaw("DPad_X") < -0.5 && XDPadInUse == false || Input.GetKeyDown(KeyCode.Q))
         {
             XDPadInUse = true;
             GetComponent<CannonAttribute>().DPadMovement(-1, 0);
         }
-        if (Input.GetAxisRaw("DPad_X") > 0.5 && XDPadInUse == false)
+        if (Input.GetAxisRaw("DPad_X") > 0.5 && XDPadInUse == false || Input.GetKeyDown(KeyCode.E))
         {
             XDPadInUse = true;
             GetComponent<CannonAttribute>().DPadMovement(1, 0);
         }
-<<<<<<< HEAD
-=======
         if (Input.GetAxisRaw("DPad_X") > -0.5 && Input.GetAxisRaw("DPad_X") < 0.5)
         {
             XDPadInUse = false;
@@ -159,7 +169,6 @@ public class PlayerController : MonoBehaviour {
         {
             print("Right Stick Click");
         }
->>>>>>> 14702db18b252bbda1b9e7f9a26846e00dc68fc9
     }
 
     void OnCollisionStay(Collision col)
