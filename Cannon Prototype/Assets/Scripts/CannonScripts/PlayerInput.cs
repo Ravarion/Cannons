@@ -27,5 +27,9 @@ public class PlayerInput : MonoBehaviour {
         {
             GetComponent<CannonAttribute>().DPadMovement(1, 0);
         }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            GetComponent<CannonAttribute>().AUp();
+        }
     }
 }

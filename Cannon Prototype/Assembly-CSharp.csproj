@@ -46,6 +46,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CannonAttributes\Bouncy.cs" />
+     <Compile Include="Assets\Scripts\CannonAttributes\BulletTime.cs" />
      <Compile Include="Assets\Scripts\CannonAttributes\CannonAttribute.cs" />
      <Compile Include="Assets\Scripts\CannonAttributes\Glider.cs" />
      <Compile Include="Assets\Scripts\CannonAttributes\GrowWhilePressed.cs" />
