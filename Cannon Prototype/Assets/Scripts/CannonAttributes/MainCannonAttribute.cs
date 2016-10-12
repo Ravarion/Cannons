@@ -24,6 +24,8 @@ public class MainCannonAttribute : CannonAttribute {
         {
             return;
         }
+        PlayCannonFireSound();
+        GetComponent<Rigidbody>().AddForce(-transform.forward * blowback, ForceMode.Impulse);
         GameObject newShot = Instantiate(toShoot, spawnPos.position, Quaternion.identity) as GameObject;
         //Add attributes
         if(leftAttributeToSend != null)
@@ -47,26 +49,24 @@ public class MainCannonAttribute : CannonAttribute {
         GetComponent<PlayerController>().currentCannon = false;
     }
 
-    public void NewAttributeToSend(GameObject newAttributeObj)
+    public bool NewAttributeToSend(GameObject newAttributeObj)
     {
         if (leftAttributeToSend == null)
         {
             leftAttributeToSend = newAttributeObj;
-            return;
+            return true;
         }
         if (leftAttributeToSend.GetComponent<CannonAttribute>().GetType() == newAttributeObj.GetComponent<CannonAttribute>().GetType())
         {
             //Attribute is already on
-            return;
+            return false;
         }
         if (rightAttributeToSend.GetComponent<CannonAttribute>().GetType() == newAttributeObj.GetComponent<CannonAttribute>().GetType())
         {
             //Attribute is already on
-            return;
+            return false;
         }
-        else
-        {
-            rightAttributeToSend = newAttributeObj;
-        }
+        rightAttributeToSend = newAttributeObj;
+        return true;
     }
 }

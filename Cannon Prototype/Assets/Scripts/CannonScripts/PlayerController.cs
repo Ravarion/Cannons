@@ -12,6 +12,10 @@ public class PlayerController : MonoBehaviour {
 
     void Update()
     {
+        if(!currentCannon)
+        {
+            return;
+        }
         foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
         {
             if (attribute == GetComponents<CannonAttribute>()[GetComponents<CannonAttribute>().Length - 1])
@@ -147,9 +151,9 @@ public class PlayerController : MonoBehaviour {
         {
             print("X");
         }
-        if (Input.GetButtonDown("Y"))
+        if (Input.GetButtonDown("Y") || Input.GetKeyDown(KeyCode.Z))
         {
-            print("Y");
+            GetComponent<CannonAttribute>().SwitchTo(GameObject.FindGameObjectWithTag("MainCannon"));
         }
 
         if (Input.GetButtonDown("Start"))
