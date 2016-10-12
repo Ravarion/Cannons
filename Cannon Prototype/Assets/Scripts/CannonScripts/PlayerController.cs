@@ -107,12 +107,12 @@ public class PlayerController : MonoBehaviour {
             print("Left Bumper!");
         }
 
-        if (Input.GetAxisRaw("DPad_X") < -0.5 && XDPadInUse == false || Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetAxisRaw("DPad_X") < -0.5 && XDPadInUse == false || Input.GetKey(KeyCode.Q))
         {
             XDPadInUse = true;
             GetComponent<CannonAttribute>().DPadMovement(-1, 0);
         }
-        if (Input.GetAxisRaw("DPad_X") > 0.5 && XDPadInUse == false || Input.GetKeyDown(KeyCode.E))
+        if (Input.GetAxisRaw("DPad_X") > 0.5 && XDPadInUse == false || Input.GetKey(KeyCode.E))
         {
             XDPadInUse = true;
             GetComponent<CannonAttribute>().DPadMovement(1, 0);
