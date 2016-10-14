@@ -58,6 +58,7 @@
      <Compile Include="Assets\Scripts\CannonScripts\MouseLook.cs" />
      <Compile Include="Assets\Scripts\CannonScripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\CannonScripts\PlayerInput.cs" />
+     <Compile Include="Assets\Scripts\Pellets.cs" />
      <Compile Include="Assets\Scripts\SendPowerUp.cs" />
      <Compile Include="Assets\Scripts\StartMenu.cs" />
      <Compile Include="Assets\Scripts\WorldScripts\LoseOnTouch.cs" />
