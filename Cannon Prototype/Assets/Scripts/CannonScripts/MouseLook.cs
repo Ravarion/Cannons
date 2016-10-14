@@ -22,38 +22,73 @@ public class MouseLook : MonoBehaviour
 {
     public enum RotationAxes { MouseXAndY = 0, MouseX = 1, MouseY = 2 }
     public RotationAxes axes = RotationAxes.MouseXAndY;
-    public float sensitivityX = 15F;
-    public float sensitivityY = 15F;
+
+    public Vector2 sensitivity = new Vector2(15f,15f);
+    public Vector2 smoothing = new Vector2(3,3);
+    public Vector2 targetDirection;
+    public bool lockCursor;
+
     public float minimumX = -360F;
     public float maximumX = 360F;
-    public float minimumY = -360F;
-    public float maximumY = 360F;
+    public float minimumY = -60F;
+    public float maximumY = 60F;
     public float rotationX = 0F;
     public float rotationY = 0F;
     Quaternion originalRotation;
+
+    Vector2 _mouseAbsolute;
+    Vector2 _smoothMouse;     
+
+
     void Update()
     {
+        //Delete unless essential in practice
+        //Screen.lockCursor=lockCursor;
+
+        //this allows us to clamp based on a target value
+        var targetOrientation = Quaternion.Euler(targetDirection);
+
+
+
         if (axes == RotationAxes.MouseXAndY)
         {
-            // Read the mouse input axis
-            rotationX += Input.GetAxis("Mouse X") * sensitivityX;
-            rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
-            rotationX = ClampAngle(rotationX, minimumX, maximumX);
-            rotationY = ClampAngle(rotationY, minimumY, maximumY);
-            Quaternion xQuaternion = Quaternion.AngleAxis(rotationX, Vector3.up);
-            Quaternion yQuaternion = Quaternion.AngleAxis(rotationY, -Vector3.right);
-            transform.localRotation = originalRotation * xQuaternion * yQuaternion;
+            // Read the raw mouse input axis
+            var mouseDelta = new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y"));
+
+            //Scale raw input my sensitivity and smoothing
+            mouseDelta.x = mouseDelta.x*sensitivity.x*smoothing.x;
+            mouseDelta.y = mouseDelta.y*sensitivity.y*smoothing.y;
+
+            //Interpolate mouse movement to smooth
+            _smoothMouse.x = Mathf.Lerp(_smoothMouse.x,mouseDelta.x,1f/smoothing.x);
+            _smoothMouse.y = Mathf.Lerp(_smoothMouse.y,mouseDelta.y,1f/smoothing.y);
+
+            _mouseAbsolute += _smoothMouse;
+
+            _mouseAbsolute.x = ClampAngle(_mouseAbsolute.x, minimumX, maximumX);
+            transform.localRotation= Quaternion.AngleAxis(-_mouseAbsolute.y, targetOrientation* Vector3.right);
+                
+            _mouseAbsolute.y = ClampAngle(_mouseAbsolute.y, minimumY, maximumY);
+
+            transform.localRotation *= targetOrientation;
+
+            transform.localRotation *= Quaternion.AngleAxis(_mouseAbsolute.x, transform.InverseTransformDirection(Vector3.up));
+
+
+
         }
         else if (axes == RotationAxes.MouseX)
         {
-            rotationX += Input.GetAxis("Mouse X") * sensitivityX;
+            var mouseDeltaX = Input.GetAxisRaw("Mouse X");
+            rotationX += Input.GetAxis("Mouse X") * sensitivity.x;
             rotationX = ClampAngle(rotationX, minimumX, maximumX);
             Quaternion xQuaternion = Quaternion.AngleAxis(rotationX, Vector3.up);
             transform.localRotation = originalRotation * xQuaternion;
         }
         else
         {
-            rotationY += Input.GetAxis("Mouse Y") * sensitivityY;
+            var mouseDeltaY = Input.GetAxisRaw("Mouse Y");
+            rotationY += Input.GetAxis("Mouse Y") * sensitivity.y;
             rotationY = ClampAngle(rotationY, minimumY, maximumY);
             Quaternion yQuaternion = Quaternion.AngleAxis(-rotationY, Vector3.right);
             transform.localRotation = originalRotation * yQuaternion;
@@ -63,6 +98,9 @@ public class MouseLook : MonoBehaviour
     }
     void Start()
     {
+        //set target direction to the starting camera orientation
+        targetDirection = transform.localRotation.eulerAngles;
+
         //Hide the cursor and force it to stay within the game's bounds
         Cursor.lockState = CursorLockMode.Locked;
         // Make the rigid body not change rotation
