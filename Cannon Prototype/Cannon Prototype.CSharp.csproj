@@ -63,8 +63,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\CannonAttributes\Bouncy.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\CannonAttribute.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\Discplacement.cs" />
+    <Compile Include="Assets\Scripts\CannonAttributes\Glider.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\GrowWhilePressed.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\ItemCreationAttribute.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\Jetpack.cs" />
@@ -80,6 +82,7 @@
     <Compile Include="Assets\Scripts\StartMenu.cs" />
     <Compile Include="Assets\Scripts\Utility\Destroy.cs" />
     <Compile Include="Assets\Scripts\WorldScripts\LoseOnTouch.cs" />
+    <Compile Include="Assets\Scripts\WorldScripts\Menu.cs" />
     <Compile Include="Assets\Scripts\WorldScripts\Pickup.cs" />
     <Compile Include="Assets\Scripts\WorldScripts\PlayerSettings.cs" />
     <Compile Include="Assets\Scripts\WorldScripts\StickOnCollide.cs" />
