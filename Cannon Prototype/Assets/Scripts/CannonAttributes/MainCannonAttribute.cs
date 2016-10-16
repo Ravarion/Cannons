@@ -3,6 +3,7 @@ using System.Collections;
 
 public class MainCannonAttribute : CannonAttribute {
 
+    public GameObject arcPrefab;
     public GameObject leftAttributeToSend;
     public GameObject rightAttributeToSend;
 
@@ -14,6 +15,29 @@ public class MainCannonAttribute : CannonAttribute {
             toShoot = Resources.Load("SubCannon") as GameObject;
         }
     }
+
+    override public void Update()
+    {
+        for(int i = transform.FindChild("ShotPath").childCount-1; i >= 0; i--)
+        {
+            Destroy(transform.FindChild("ShotPath").GetChild(i).gameObject);
+        }
+        for(int i = 0; i < 5; i++)
+        {
+            CreateProjectedArc(i/5f);
+        }
+    }
+
+    public void CreateProjectedArc(float t)
+    {
+        Vector3 startingLoc = spawnPos.position;
+        Vector2 linearVelocity = new Vector2(transform.forward.x * 20, transform.forward.z * 20);
+        float upwardPosition = transform.forward.y * 20f * t + 0.5f * t * t * -9.8f;
+        Vector3 finalPosition = new Vector3(linearVelocity.x * t, upwardPosition, linearVelocity.y * t);
+        GameObject newArcObj = Instantiate(arcPrefab, startingLoc + finalPosition, Quaternion.identity) as GameObject;
+        newArcObj.transform.parent = transform.FindChild("ShotPath");
+    }
+
     override public void RightTriggerDown()
     {
         if (!GetComponent<PlayerController>().currentCannon)
@@ -60,6 +84,11 @@ public class MainCannonAttribute : CannonAttribute {
         {
             //Attribute is already on
             return false;
+        }
+        if (rightAttributeToSend == null)
+        {
+            rightAttributeToSend = newAttributeObj;
+            return true;
         }
         if (rightAttributeToSend.GetComponent<CannonAttribute>().GetType() == newAttributeObj.GetComponent<CannonAttribute>().GetType())
         {
