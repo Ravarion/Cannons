@@ -57,7 +57,7 @@ public class MouseLook : MonoBehaviour
 
             //Scale raw input my sensitivity and smoothing
             mouseDelta.x = mouseDelta.x*sensitivity.x*smoothing.x;
-            mouseDelta.y = mouseDelta.y*sensitivity.y*smoothing.y;
+            mouseDelta.y = -mouseDelta.y*sensitivity.y*smoothing.y;
 
             //Interpolate mouse movement to smooth
             _smoothMouse.x = Mathf.Lerp(_smoothMouse.x,mouseDelta.x,1f/smoothing.x);
@@ -94,7 +94,6 @@ public class MouseLook : MonoBehaviour
             transform.localRotation = originalRotation * yQuaternion;
         }
         transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0);
-        //transform.localEulerAngles = new Vector3(0, 0, 0);
     }
     void Start()
     {

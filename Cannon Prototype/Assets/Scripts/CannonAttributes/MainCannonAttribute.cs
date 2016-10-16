@@ -69,4 +69,16 @@ public class MainCannonAttribute : CannonAttribute {
         rightAttributeToSend = newAttributeObj;
         return true;
     }
+
+    public void SwitchAttributes()
+    {
+        GameObject tempObject = leftAttributeToSend;
+        leftAttributeToSend = rightAttributeToSend;
+        rightAttributeToSend = tempObject;
+    }
+
+    public void DropAttribute()
+    {
+        rightAttributeToSend = null;
+    }
 }

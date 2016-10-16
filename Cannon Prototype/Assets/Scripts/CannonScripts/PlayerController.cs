@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour {
         {
             return;
         }
+
+        /**Left Stick*/
         foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
         {
             if (attribute == GetComponents<CannonAttribute>()[GetComponents<CannonAttribute>().Length - 1])
@@ -29,22 +31,23 @@ public class PlayerController : MonoBehaviour {
                 break;
             }
         }
+        /**Right Stick*/
         foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
         {
             if (attribute == GetComponents<CannonAttribute>()[GetComponents<CannonAttribute>().Length - 1])
             {
-                attribute.RightStickMovement(Input.GetAxis("Right_Stick_X"), Input.GetAxis("Right_Stick_Y"));
+                attribute.RightStickMovement(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
                 break;
             }
             if (attribute.RightStickMovement(true))
             {
-                attribute.RightStickMovement(Input.GetAxis("Right_Stick_X"), Input.GetAxis("Right_Stick_Y"));
+                attribute.RightStickMovement(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
                 break;
             }
         }
 
-        
-        if (Input.GetAxisRaw("Triggers") < -0.5 || Input.GetButtonDown("Fire1")) //Right Trigger
+        /*Right Trigger*/
+        if (Input.GetAxisRaw("Triggers") < -0.5 || Input.GetButtonDown("Fire1"))
         {
             if (TriggersInUse == false)
             {
@@ -65,7 +68,8 @@ public class PlayerController : MonoBehaviour {
                 }
             }
         }
-        if (Input.GetAxisRaw("Triggers") > 0.5) //Left Trigger
+        /*Left Trigger*/
+        if (Input.GetAxisRaw("Triggers") > 0.5)
         {
             print("Left Trigger!");
         }
@@ -111,12 +115,13 @@ public class PlayerController : MonoBehaviour {
             print("Left Bumper!");
         }
 
-        if (Input.GetAxisRaw("DPad_X") < -0.5 && XDPadInUse == false || Input.GetKeyDown(KeyCode.Q))
+        /** DPAD */
+        if (Input.GetAxisRaw("DPad_X") < -0.5 && XDPadInUse == false)
         {
             XDPadInUse = true;
             GetComponent<CannonAttribute>().DPadMovement(-1, 0);
         }
-        if (Input.GetAxisRaw("DPad_X") > 0.5 && XDPadInUse == false || Input.GetKeyDown(KeyCode.E))
+        if (Input.GetAxisRaw("DPad_X") > 0.5 && XDPadInUse == false)
         {
             XDPadInUse = true;
             GetComponent<CannonAttribute>().DPadMovement(1, 0);
@@ -125,7 +130,6 @@ public class PlayerController : MonoBehaviour {
         {
             XDPadInUse = false;
         }
-
         if (Input.GetAxisRaw("DPad_Y") < -0.5 && YDPadInUse == false)
         {
             YDPadInUse = true;
@@ -138,22 +142,29 @@ public class PlayerController : MonoBehaviour {
         {
             YDPadInUse = false;
         }
+        /** END DPAD */
 
-        if(Input.GetButtonDown("A"))
+        if (Input.GetButtonDown("A"))
         {
             print("A");
         }
-        if (Input.GetButtonDown("B"))
+        if (Input.GetButtonDown("B") || Input.GetKeyDown(KeyCode.X))
         {
-            print("B");
+            if(GetComponent<MainCannonAttribute>())
+            {
+                GetComponent<MainCannonAttribute>().SwitchAttributes();
+            }
         }
-        if (Input.GetButtonDown("X"))
-        {
-            print("X");
-        }
-        if (Input.GetButtonDown("Y") || Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetButtonDown("X") || Input.GetKeyDown(KeyCode.Z))
         {
             GetComponent<CannonAttribute>().SwitchTo(GameObject.FindGameObjectWithTag("MainCannon"));
+        }
+        if (Input.GetButtonDown("Y") || Input.GetKeyDown(KeyCode.C))
+        {
+            if (GetComponent<MainCannonAttribute>())
+            {
+                GetComponent<MainCannonAttribute>().DropAttribute();
+            }
         }
 
         if (Input.GetButtonDown("Start"))
@@ -177,7 +188,15 @@ public class PlayerController : MonoBehaviour {
 
     void OnCollisionStay(Collision col)
     {
-        //Todo: Update grounded
+        isGrounded = true;
+        GetComponent<Rigidbody>().drag = 1;
+        //Todo: Improved isGrounded logic
+    }
+
+    void OnCollisionExit(Collision col)
+    {
+        isGrounded = false;
+        GetComponent<Rigidbody>().drag = 0;
     }
 
     //when this object is created, it is subscribed to the event GenericPowerUpAbility

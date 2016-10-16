@@ -66,6 +66,10 @@ public class CannonAttribute : MonoBehaviour {
         {
             return;
         }
+        if(!GetComponent<PlayerController>().isGrounded)
+        {
+            return;
+        }
         Vector3 movementDirection = new Vector3(transform.forward.x, 0, transform.forward.z) * y + new Vector3(transform.right.x, 0, transform.right.z) * x;
         GetComponent<Rigidbody>().AddForce(movementDirection * 0.1f, ForceMode.Impulse);
     }
@@ -75,10 +79,6 @@ public class CannonAttribute : MonoBehaviour {
         {
             return;
         }
-        Quaternion rotation = Quaternion.Euler(new Vector3(0, x, 0) * 18 * Time.deltaTime);
-
-        transform.Rotate(new Vector3(0, x, 0), 18 * Time.deltaTime);
-        //TODO: Test this
     }
 
     virtual public void DPadMovement(float x, float y)
@@ -105,7 +105,6 @@ public class CannonAttribute : MonoBehaviour {
                 {
                     if (gameObject == cannonArray[i])
                     {
-                        print(i);
                         if (i == cannonArray.Length - 1)
                         {
                             switchIndex = 0;

@@ -39,7 +39,7 @@ public class Jetpack : CannonAttribute {
     public override void Update()
     {
         timeSinceBurn += Time.deltaTime;
-        if(energy < maxEnergy && timeSinceBurn > 1f)
+        if(energy < maxEnergy && timeSinceBurn > 1f && GetComponent<PlayerController>().isGrounded)
         {
             energy += Time.deltaTime * 3;
         }
