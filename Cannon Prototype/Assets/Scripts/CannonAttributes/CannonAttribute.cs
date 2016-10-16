@@ -5,9 +5,16 @@ public class CannonAttribute : MonoBehaviour {
 
     public GameObject toShoot;
     public Transform spawnPos;
+<<<<<<< HEAD
     public float blowback = 1;
     public AudioClip cannonFireSound;
     public AudioClip deathSound;
+=======
+    public float blowback;
+	public bool canMove =true;
+
+	public Vector3 hitNormal;
+>>>>>>> 4fc4b2f0baf7c4031c90be3a7c823bd8177b7f4b
 
     virtual public void Start()
     {
@@ -48,6 +55,24 @@ public class CannonAttribute : MonoBehaviour {
         }
     }
 
+	void OnCollisionEnter(Collision col)
+	{
+		hitNormal = col.contacts [0].normal;
+		canMove = true;
+	}
+
+	void OnCollisionStay(Collision col)
+	{
+		hitNormal = col.contacts [0].normal;
+		canMove = true;
+	}
+
+	void OnCollisionExit(Collision col)
+	{
+		hitNormal = Vector3.up;
+		canMove = false;
+	}
+
     virtual public void SwitchTo(GameObject cannon)
     {
         //Switch current object off
@@ -62,6 +87,7 @@ public class CannonAttribute : MonoBehaviour {
 
     virtual public void LeftStickMovement(float x, float y)
     {
+<<<<<<< HEAD
         if(!GetComponent<PlayerController>().currentCannon)
         {
             return;
@@ -72,6 +98,22 @@ public class CannonAttribute : MonoBehaviour {
         }
         Vector3 movementDirection = new Vector3(transform.forward.x, 0, transform.forward.z) * y + new Vector3(transform.right.x, 0, transform.right.z) * x;
         GetComponent<Rigidbody>().AddForce(movementDirection * 0.1f, ForceMode.Impulse);
+=======
+		if (canMove) {
+			if (!GetComponent<PlayerController> ().currentCannon) {
+				return;
+			}
+			Vector3 movementDirection = new Vector3 (transform.forward.x, 0, transform.forward.z) * y + new Vector3 (transform.right.x, 0, transform.right.z) * x;
+
+			//Vector3 movementDirection = new Vector3(transform.forward.x, transform.forward.y, transform.forward.z) * y + new Vector3(transform.right.x, transform.right.y, transform.right.z) * x;
+
+			movementDirection = Vector3.ProjectOnPlane (movementDirection, hitNormal);
+
+			//movementDirection = new Vector3(transform.forward.x,0,transform.forward.z) * y + new Vector3(transform.forward.x,0,transform.forward.z) * x;
+
+			GetComponent<Rigidbody> ().AddForce (movementDirection * 0.1f, ForceMode.Impulse);
+		}
+>>>>>>> 4fc4b2f0baf7c4031c90be3a7c823bd8177b7f4b
     }
     virtual public void RightStickMovement(float x, float y)
     {
