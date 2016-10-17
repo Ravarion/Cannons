@@ -130,6 +130,20 @@ public class PlayerController : MonoBehaviour {
         {
             XDPadInUse = false;
         }
+
+        if ( Input.GetKeyDown(KeyCode.X) )
+        {
+            GetComponent<CannonAttribute>().DPadMovement(-1, 0);
+        }
+        if ( Input.GetKeyDown(KeyCode.C) )
+        {
+            GetComponent<CannonAttribute>().DPadMovement(1, 0);
+        }
+        if ( Input.GetKeyDown(KeyCode.R) )
+        {
+            GetComponent<CannonAttribute>().SwitchTo(GameObject.FindGameObjectWithTag("MainCannon"));
+        }
+
         if (Input.GetAxisRaw("DPad_Y") < -0.5 && YDPadInUse == false)
         {
             YDPadInUse = true;

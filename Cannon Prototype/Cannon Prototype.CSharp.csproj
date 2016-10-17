@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\CannonAttributes\Discplacement.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\Glider.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\GlowingAttribute.cs" />
+    <Compile Include="Assets\Scripts\CannonAttributes\GrapplingHook.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\GrowWhilePressed.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\ItemCreationAttribute.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\Jetpack.cs" />
