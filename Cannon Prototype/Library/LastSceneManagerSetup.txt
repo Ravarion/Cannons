@@ -1,4 +1,7 @@
 sceneSetups:
-- path: Assets/Scenes/Test3.unity
+- path: Assets/Scenes/Main Menu.unity
   isLoaded: 1
   isActive: 1
+- path: Assets/Scenes/Pipes.unity
+  isLoaded: 0
+  isActive: 0

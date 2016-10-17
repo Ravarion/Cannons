@@ -1,0 +1,38 @@
+Initialize engine version: 5.4.1f1 (649f48bbbf0f)
+GfxDevice: creating device client; threaded=1
+Direct3D:
+    Version:  Direct3D 11.0 [level 11.0]
+    Renderer: AMD Radeon R7 M260X (ID=0x6605)
+    Vendor:   ATI
+    VRAM:     1004 MB
+Begin MonoManager ReloadAssembly
+Platform assembly: D:\Student Data\Documents\Cannons\Cannon Prototype\Cannon_Data\Managed\UnityEngine.dll (this message is harmless)
+Loading D:\Student Data\Documents\Cannons\Cannon Prototype\Cannon_Data\Managed\UnityEngine.dll into Unity Child Domain
+Platform assembly: D:\Student Data\Documents\Cannons\Cannon Prototype\Cannon_Data\Managed\Assembly-CSharp.dll (this message is harmless)
+Loading D:\Student Data\Documents\Cannons\Cannon Prototype\Cannon_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
+Platform assembly: D:\Student Data\Documents\Cannons\Cannon Prototype\Cannon_Data\Managed\UnityEngine.UI.dll (this message is harmless)
+Loading D:\Student Data\Documents\Cannons\Cannon Prototype\Cannon_Data\Managed\UnityEngine.UI.dll into Unity Child Domain
+Platform assembly: D:\Student Data\Documents\Cannons\Cannon Prototype\Cannon_Data\Managed\UnityEngine.Networking.dll (this message is harmless)
+Loading D:\Student Data\Documents\Cannons\Cannon Prototype\Cannon_Data\Managed\UnityEngine.Networking.dll into Unity Child Domain
+- Completed reload, in  0.261 seconds
+Platform assembly: D:\Student Data\Documents\Cannons\Cannon Prototype\Cannon_Data\Managed\System.Core.dll (this message is harmless)
+Platform assembly: D:\Student Data\Documents\Cannons\Cannon Prototype\Cannon_Data\Managed\System.dll (this message is harmless)
+desktop: 1600x900 60Hz; virtual: 1600x900 at 0,0
+<RI> Initializing input.
+<RI> Input initialized.
+<RI> Initialized touch support.
+UnloadTime: 1.276897 ms
+Setting up 1 worker threads for Enlighten.
+  Thread -> id: 1c8c -> priority: 1 
+Unloading 6 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 8.189497 ms
+
+Unloading 5 unused Assets to reduce memory usage. Loaded Objects now: 483.
+Total: 0.453935 ms (FindLiveObjects: 0.041521 ms CreateObjectMapping: 0.034056 ms MarkObjects: 0.366227 ms  DeleteObjects: 0.011196 ms)
+
+Unloading 3 Unused Serialized files (Serialized files now loaded: 0)
+UnloadTime: 2.817851 ms
+
+Unloading 77 unused Assets to reduce memory usage. Loaded Objects now: 247.
+Total: 1.319351 ms (FindLiveObjects: 0.048052 ms CreateObjectMapping: 0.046186 ms MarkObjects: 0.523915 ms  DeleteObjects: 0.700264 ms)
+

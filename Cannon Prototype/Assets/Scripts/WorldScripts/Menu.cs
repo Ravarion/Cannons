@@ -102,4 +102,10 @@ public class Menu : MonoBehaviour {
         paused = false;
         SceneManager.LoadScene(0);
     }
+    public void RestartLevelButton()
+    {
+        Time.timeScale = 1;
+        paused = false;
+        GetComponent<LevelManager>().ResetLevel();
+    }
 }

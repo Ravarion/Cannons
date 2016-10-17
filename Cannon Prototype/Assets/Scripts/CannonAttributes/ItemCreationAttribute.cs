@@ -3,6 +3,12 @@ using System.Collections;
 
 public class ItemCreationAttribute : CannonAttribute {
 
+    public override void Start()
+    {
+        base.Start();
+        toShoot = Resources.Load("ObjectCapsule") as GameObject;
+    }
+
     public override bool RightTriggerDown(bool checkOverwrite)
     {
         return true;
