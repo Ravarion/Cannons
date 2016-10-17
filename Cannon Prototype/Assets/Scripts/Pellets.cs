@@ -1,32 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
 
+
+
 public class Pellets : MonoBehaviour {
 
     public GameObject cannon;
-
-	// Use this for initialization
-	void Start () {
-
-        cannon = GameObject.Find("SubCannon");
-	}
+    private float lifeTime = 0.0f;
+    public float lifeTimeEnd = 5.0f;
 	
 	// Update is called once per frame
-	void Update () {
-	
+	void Update ()
+    {
+        lifeTime += Time.deltaTime;
+
+        //if the pellet dosn't collide with anything for 5 seconds it is destroyed
+        if (lifeTime > lifeTimeEnd)
+            Destroy(gameObject);
 	}
 
-    void OnTriggerEnter(Collider col)
-    {
-        if(col.gameObject.name == "Jetpack Pickup")
-        {
-            cannon.AddComponent<Jetpack>();
-        }
-    }
-
+    //Destroys pellet when it collides with anything except the cannon
     void OnCollisionEnter(Collision col)
     {  
-        if(col.gameObject.name != "Cannon" & col.gameObject.name != "Jetpack Pickup")
+        if(col.gameObject.tag != "Cannon")
         {
             Destroy(gameObject);
         }
