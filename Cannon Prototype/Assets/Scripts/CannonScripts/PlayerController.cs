@@ -78,41 +78,41 @@ public class PlayerController : MonoBehaviour {
             TriggersInUse = false;
         }
 
-        if (Input.GetButton("Right_Bumper") || Input.GetKey(KeyCode.Space))
+        if (Input.GetButton("Left_Bumper") || Input.GetKey(KeyCode.Space))
         {
-            foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
+            GetComponents<CannonAttribute>()[0].AHold();
+        }
+        if (Input.GetButtonDown("Left_Bumper") || Input.GetKeyDown(KeyCode.Space))
+        {
+            GetComponents<CannonAttribute>()[0].ADown();
+        }
+        if (Input.GetButton("Right_Bumper"))
+        {
+            if (GetComponents<CannonAttribute>().Length > 1)
             {
-                if (attribute == GetComponents<CannonAttribute>()[GetComponents<CannonAttribute>().Length - 1])
-                {
-                    attribute.AHold();
-                    break;
-                }
-                if (attribute.AHold(true))
-                {
-                    attribute.AHold();
-                    break;
-                }
+                GetComponents<CannonAttribute>()[1].AHold();
             }
         }
-        if (Input.GetButtonDown("Right_Bumper") || Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Right_Bumper"))
         {
-            foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
+            if(GetComponents<CannonAttribute>().Length > 1)
             {
-                if (attribute == GetComponents<CannonAttribute>()[GetComponents<CannonAttribute>().Length - 1])
-                {
-                    attribute.ADown();
-                    break;
-                }
-                if (attribute.ADown(true))
-                {
-                    attribute.ADown();
-                    break;
-                }
+                GetComponents<CannonAttribute>()[1].ADown();
             }
         }
-        if (Input.GetButtonDown("Left_Bumper"))
+        if (Input.GetButton("A"))
         {
-            print("Left Bumper!");
+            if (GetComponents<CannonAttribute>().Length > 2)
+            {
+                GetComponents<CannonAttribute>()[2].AHold();
+            }
+        }
+        if (Input.GetButtonDown("A"))
+        {
+            if (GetComponents<CannonAttribute>().Length > 2)
+            {
+                GetComponents<CannonAttribute>()[2].ADown();
+            }
         }
 
         /** DPAD */
@@ -144,10 +144,6 @@ public class PlayerController : MonoBehaviour {
         }
         /** END DPAD */
 
-        if (Input.GetButtonDown("A"))
-        {
-            print("A");
-        }
         if (Input.GetButtonDown("B") || Input.GetKeyDown(KeyCode.X))
         {
             if(GetComponent<MainCannonAttribute>())

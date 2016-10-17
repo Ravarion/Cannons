@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class CannonAttribute : MonoBehaviour {
@@ -9,7 +10,8 @@ public class CannonAttribute : MonoBehaviour {
     public AudioClip cannonFireSound;
     public AudioClip deathSound;
 
-	public bool canMove = true;
+    public Text attributeText;
+    public bool canMove = true;
 	public Vector3 hitNormal;
 
     virtual public void Start()
@@ -26,11 +28,48 @@ public class CannonAttribute : MonoBehaviour {
         {
             cannonFireSound = Resources.Load("Sounds/cannonBlast") as AudioClip;
         }
+        if(attributeText == null)
+        {
+            attributeText = GameObject.Find("Powerup Text").GetComponent<Text>();
+        }
     }
 
     virtual public void Update()
     {
-        //Place holder
+        if(GetComponent<PlayerController>().currentCannon)
+        {
+            UpdateAttributeText();
+        }
+    }
+
+    virtual public void UpdateAttributeText()
+    {
+        if (GetComponents<CannonAttribute>().Length < 1)
+        {
+            attributeText.text = "Left Bumper:  Null";
+        }
+        else
+        {
+            attributeText.text = "Left Bumper:  " + GetComponents<CannonAttribute>()[0].GetType().FullName;
+        }
+        attributeText.text += "\n";
+        if (GetComponents<CannonAttribute>().Length < 2)
+        {
+            attributeText.text += "Right Bumper: Null";
+        }
+        else
+        {
+            attributeText.text += "Right Bumper: " + GetComponents<CannonAttribute>()[1].GetType().FullName;
+        }
+        attributeText.text += "\n";
+        if (GetComponents<CannonAttribute>().Length < 3)
+        {
+            attributeText.text += "A Button:     Null";
+        }
+        else
+        {
+            attributeText.text += "A Button:     " + GetComponents<CannonAttribute>()[2].GetType().FullName;
+        }
     }
 
     virtual public void PlayCannonFireSound()
@@ -72,9 +111,9 @@ public class CannonAttribute : MonoBehaviour {
     virtual public void SwitchTo(GameObject cannon)
     {
         //Switch current object off
-        transform.FindChild("Main Camera").gameObject.SetActive(false);
-        GetComponent<PlayerController>().currentCannon = false;
         GetComponent<MouseLook>().enabled = false;
+        GetComponent<PlayerController>().currentCannon = false;
+        transform.FindChild("Main Camera").gameObject.SetActive(false);
         //Switch next object on
         cannon.transform.FindChild("Main Camera").gameObject.SetActive(true);
         cannon.GetComponent<PlayerController>().currentCannon = true;
