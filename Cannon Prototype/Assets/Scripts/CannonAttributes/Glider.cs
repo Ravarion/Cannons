@@ -6,12 +6,6 @@ public class Glider : CannonAttribute {
     public float liftForce = 0.5f;
     private bool glideBreak = false;
 
-	// Use this for initialization
-	void Start ()
-    {
-
-	}
-
     //Provides constant upward Force to slow desent
     void FixedUpdate()
     {
@@ -20,11 +14,6 @@ public class Glider : CannonAttribute {
             GetComponent<Rigidbody>().AddForce(Vector3.up * liftForce);
         }
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 
     //stops glide force on collision
     //NOT IMPLEMENTED!

@@ -12,6 +12,12 @@ public class PlayerController : MonoBehaviour {
 
     void Update()
     {
+        if(!currentCannon)
+        {
+            return;
+        }
+
+        /**Left Stick*/
         foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
         {
             if (attribute == GetComponents<CannonAttribute>()[GetComponents<CannonAttribute>().Length - 1])
@@ -25,22 +31,23 @@ public class PlayerController : MonoBehaviour {
                 break;
             }
         }
+        /**Right Stick*/
         foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
         {
             if (attribute == GetComponents<CannonAttribute>()[GetComponents<CannonAttribute>().Length - 1])
             {
-                attribute.RightStickMovement(Input.GetAxis("Right_Stick_X"), Input.GetAxis("Right_Stick_Y"));
+                attribute.RightStickMovement(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
                 break;
             }
             if (attribute.RightStickMovement(true))
             {
-                attribute.RightStickMovement(Input.GetAxis("Right_Stick_X"), Input.GetAxis("Right_Stick_Y"));
+                attribute.RightStickMovement(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
                 break;
             }
         }
 
-        
-        if (Input.GetAxisRaw("Triggers") < -0.5 || Input.GetButtonDown("Fire1")) //Right Trigger
+        /*Right Trigger*/
+        if (Input.GetAxisRaw("Triggers") < -0.5 || Input.GetButtonDown("Fire1"))
         {
             if (TriggersInUse == false)
             {
@@ -61,7 +68,8 @@ public class PlayerController : MonoBehaviour {
                 }
             }
         }
-        if (Input.GetAxisRaw("Triggers") > 0.5) //Left Trigger
+        /*Left Trigger*/
+        if (Input.GetAxisRaw("Triggers") > 0.5)
         {
             print("Left Trigger!");
         }
@@ -70,49 +78,50 @@ public class PlayerController : MonoBehaviour {
             TriggersInUse = false;
         }
 
-        if (Input.GetButton("Right_Bumper") || Input.GetKey(KeyCode.Space))
+        if (Input.GetButton("Left_Bumper") || Input.GetKey(KeyCode.Space))
         {
-            foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
+            GetComponents<CannonAttribute>()[0].AHold();
+        }
+        if (Input.GetButtonDown("Left_Bumper") || Input.GetKeyDown(KeyCode.Space))
+        {
+            GetComponents<CannonAttribute>()[0].ADown();
+        }
+        if (Input.GetButton("Right_Bumper"))
+        {
+            if (GetComponents<CannonAttribute>().Length > 1)
             {
-                if (attribute == GetComponents<CannonAttribute>()[GetComponents<CannonAttribute>().Length - 1])
-                {
-                    attribute.AHold();
-                    break;
-                }
-                if (attribute.AHold(true))
-                {
-                    attribute.AHold();
-                    break;
-                }
+                GetComponents<CannonAttribute>()[1].AHold();
             }
         }
-        if (Input.GetButtonDown("Right_Bumper") || Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetButtonDown("Right_Bumper"))
         {
-            foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
+            if(GetComponents<CannonAttribute>().Length > 1)
             {
-                if (attribute == GetComponents<CannonAttribute>()[GetComponents<CannonAttribute>().Length - 1])
-                {
-                    attribute.ADown();
-                    break;
-                }
-                if (attribute.ADown(true))
-                {
-                    attribute.ADown();
-                    break;
-                }
+                GetComponents<CannonAttribute>()[1].ADown();
             }
         }
-        if (Input.GetButtonDown("Left_Bumper"))
+        if (Input.GetButton("A"))
         {
-            print("Left Bumper!");
+            if (GetComponents<CannonAttribute>().Length > 2)
+            {
+                GetComponents<CannonAttribute>()[2].AHold();
+            }
+        }
+        if (Input.GetButtonDown("A"))
+        {
+            if (GetComponents<CannonAttribute>().Length > 2)
+            {
+                GetComponents<CannonAttribute>()[2].ADown();
+            }
         }
 
-        if (Input.GetAxisRaw("DPad_X") < -0.5 && XDPadInUse == false || Input.GetKeyDown(KeyCode.Q))
+        /** DPAD */
+        if (Input.GetAxisRaw("DPad_X") < -0.5 && XDPadInUse == false)
         {
             XDPadInUse = true;
             GetComponent<CannonAttribute>().DPadMovement(-1, 0);
         }
-        if (Input.GetAxisRaw("DPad_X") > 0.5 && XDPadInUse == false || Input.GetKeyDown(KeyCode.E))
+        if (Input.GetAxisRaw("DPad_X") > 0.5 && XDPadInUse == false)
         {
             XDPadInUse = true;
             GetComponent<CannonAttribute>().DPadMovement(1, 0);
@@ -120,6 +129,19 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetAxisRaw("DPad_X") > -0.5 && Input.GetAxisRaw("DPad_X") < 0.5)
         {
             XDPadInUse = false;
+        }
+
+        if ( Input.GetKeyDown(KeyCode.X) )
+        {
+            GetComponent<CannonAttribute>().DPadMovement(-1, 0);
+        }
+        if ( Input.GetKeyDown(KeyCode.C) )
+        {
+            GetComponent<CannonAttribute>().DPadMovement(1, 0);
+        }
+        if ( Input.GetKeyDown(KeyCode.R) )
+        {
+            GetComponent<CannonAttribute>().SwitchTo(GameObject.FindGameObjectWithTag("MainCannon"));
         }
 
         if (Input.GetAxisRaw("DPad_Y") < -0.5 && YDPadInUse == false)
@@ -134,22 +156,25 @@ public class PlayerController : MonoBehaviour {
         {
             YDPadInUse = false;
         }
+        /** END DPAD */
 
-        if(Input.GetButtonDown("A"))
+        if (Input.GetButtonDown("B") || Input.GetKeyDown(KeyCode.X))
         {
-            print("A");
+            if(GetComponent<MainCannonAttribute>())
+            {
+                GetComponent<MainCannonAttribute>().SwitchAttributes();
+            }
         }
-        if (Input.GetButtonDown("B"))
+        if (Input.GetButtonDown("X") || Input.GetKeyDown(KeyCode.Z))
         {
-            print("B");
+            GetComponent<CannonAttribute>().SwitchTo(GameObject.FindGameObjectWithTag("MainCannon"));
         }
-        if (Input.GetButtonDown("X"))
+        if (Input.GetButtonDown("Y") || Input.GetKeyDown(KeyCode.C))
         {
-            print("X");
-        }
-        if (Input.GetButtonDown("Y"))
-        {
-            print("Y");
+            if (GetComponent<MainCannonAttribute>())
+            {
+                GetComponent<MainCannonAttribute>().DropAttribute();
+            }
         }
 
         if (Input.GetButtonDown("Start"))
@@ -173,25 +198,13 @@ public class PlayerController : MonoBehaviour {
 
     void OnCollisionStay(Collision col)
     {
-        //Todo: Update grounded
+        isGrounded = true;
+        GetComponent<Rigidbody>().drag = 1;
     }
 
-    //when this object is created, it is subscribed to the event GenericPowerUpAbility
-    void OnEnable(){
-        //JetpackPickUp.JetPackOn += GenericPowerUpAbility;
-	}
-	//when the event GenericPowerUpAbility occurs, change color to pickupGetColor
-	void GenericPowerUpAbility(){
-		this.gameObject.GetComponent<Renderer>().material.SetColor("_Color", pickupGetColor);
-        this.gameObject.GetComponent<Jetpack>().enabled=true;
-	}
-
-    //this is called to disable current powerups, intended to be simplified with enums
-    void ResetPowerUp(){
-        this.gameObject.GetComponent<Renderer>().material.SetColor("_Color", originalColor);
-
-        //if the jetpack script is enabled, disable it
-        if (this.gameObject.GetComponent<Jetpack>().enabled)
-            this.gameObject.GetComponent<Jetpack>().enabled=false;
+    void OnCollisionExit(Collision col)
+    {
+        isGrounded = false;
+        GetComponent<Rigidbody>().drag = 0;
     }
 }
