@@ -6,16 +6,6 @@ public class Bouncy : CannonAttribute {
     public float jumpForce = 100.0f;
     private bool canJump;
 
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-
-    }
-
     //allows cannon to jump if it's in constant collision with something
     void OnCollisionStay(Collision col)
     {
@@ -36,5 +26,4 @@ public class Bouncy : CannonAttribute {
             GetComponent<Rigidbody>().AddForce(Vector3.up * jumpForce);
         }
     }
-
 }

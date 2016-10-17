@@ -38,15 +38,14 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="UnityEngine">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
+      <HintPath>D:/Program Files/Unity/Editor/Data/Managed/UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="UnityEditor">
-      <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
+      <HintPath>D:/Program Files/Unity/Editor/Data/Managed/UnityEditor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\CannonAttributes\Bouncy.cs" />
-     <Compile Include="Assets\Scripts\CannonAttributes\BulletTime.cs" />
      <Compile Include="Assets\Scripts\CannonAttributes\CannonAttribute.cs" />
      <Compile Include="Assets\Scripts\CannonAttributes\Discplacement.cs" />
      <Compile Include="Assets\Scripts\CannonAttributes\Glider.cs" />
@@ -61,7 +60,6 @@
      <Compile Include="Assets\Scripts\CannonScripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\CannonScripts\PlayerInput.cs" />
      <Compile Include="Assets\Scripts\JetpackPickUp.cs" />
-     <Compile Include="Assets\Scripts\Pellets.cs" />
      <Compile Include="Assets\Scripts\SendPowerUp.cs" />
      <Compile Include="Assets\Scripts\StartMenu.cs" />
      <Compile Include="Assets\Scripts\Utility\Destroy.cs" />
@@ -72,10 +70,10 @@
      <Compile Include="Assets\Scripts\WorldScripts\WinOnTouch.cs" />
      <Compile Include="Assets\SimpleSmoothMouseLook.cs" />
  <Reference Include="UnityEngine.UI">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Networking">
- <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
+ <HintPath>D:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -29,7 +29,8 @@ public class SimpleSmoothMouseLook : MonoBehaviour
     void Update()
     {
         // Ensure the cursor is always locked when set
-        Screen.lockCursor = lockCursor;
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
         // Allow the script to clamp based on a desired target value.
         var targetOrientation = Quaternion.Euler(targetDirection);

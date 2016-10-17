@@ -57,7 +57,7 @@ public class MouseLook : MonoBehaviour
 
             //Scale raw input my sensitivity and smoothing
             mouseDelta.x = mouseDelta.x*sensitivity.x*smoothing.x;
-            mouseDelta.y = mouseDelta.y*sensitivity.y*smoothing.y;
+            mouseDelta.y = -mouseDelta.y*sensitivity.y*smoothing.y;
 
             //Interpolate mouse movement to smooth
             _smoothMouse.x = Mathf.Lerp(_smoothMouse.x,mouseDelta.x,1f/smoothing.x);
@@ -77,6 +77,7 @@ public class MouseLook : MonoBehaviour
 
 
         }
+        /*
         else if (axes == RotationAxes.MouseX)
         {
             var mouseDeltaX = Input.GetAxisRaw("Mouse X");
@@ -92,9 +93,8 @@ public class MouseLook : MonoBehaviour
             rotationY = ClampAngle(rotationY, minimumY, maximumY);
             Quaternion yQuaternion = Quaternion.AngleAxis(-rotationY, Vector3.right);
             transform.localRotation = originalRotation * yQuaternion;
-        }
+        }*/
         transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0);
-        //transform.localEulerAngles = new Vector3(0, 0, 0);
     }
     void Start()
     {
