@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Pickup : MonoBehaviour {
@@ -6,6 +7,8 @@ public class Pickup : MonoBehaviour {
     public GameObject toSend;
     public AudioClip goodSound;
     public AudioClip badSound;
+
+    public Text powerupText;
 
     void Start()
     {
@@ -17,6 +20,12 @@ public class Pickup : MonoBehaviour {
         {
             badSound = Resources.Load("Sounds/badResult") as AudioClip;
         }
+        powerupText.text = toSend.GetComponent<CannonAttribute>().GetType().FullName;
+    }
+
+    void Update()
+    {
+        powerupText.gameObject.transform.LookAt(Camera.main.transform);
     }
 
     void PlayGoodSound()

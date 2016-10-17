@@ -161,7 +161,7 @@ public class MainCannonAttribute : CannonAttribute {
         }
         else
         {
-            attributeText.text = "Powerup Left:   " + leftAttributeToSend.name;
+            attributeText.text = "Powerup Left:   " + leftAttributeToSend.GetComponent<CannonAttribute>().GetType().FullName;
         }
         attributeText.text += "\n";
         if (rightAttributeToSend == null)
@@ -170,7 +170,7 @@ public class MainCannonAttribute : CannonAttribute {
         }
         else
         {
-            attributeText.text += "Powerup Right: " + rightAttributeToSend.name;
+            attributeText.text += "Powerup Right: " + rightAttributeToSend.GetComponent<CannonAttribute>().GetType().FullName;
         }
     }
 }

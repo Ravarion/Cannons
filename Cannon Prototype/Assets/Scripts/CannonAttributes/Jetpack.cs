@@ -73,7 +73,7 @@ public class Jetpack : CannonAttribute {
         particles.transform.localScale = transform.localScale;
         particles.transform.parent = transform;
 
-        Vector3 forwardMovement = new Vector3(0, 1, 0);
+        Vector3 forwardMovement = new Vector3(0, 0.9f, 0) + transform.forward*0.1f;
         if (GetComponent<Rigidbody>().velocity.y >= 5)
         {
             GetComponent<Rigidbody>().AddForce(forwardMovement * -0.1f, ForceMode.Impulse);
