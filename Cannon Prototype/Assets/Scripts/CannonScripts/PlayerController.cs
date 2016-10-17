@@ -74,7 +74,7 @@ public class PlayerController : MonoBehaviour {
             TriggersInUse = false;
         }
 
-        if (Input.GetButton("Right_Bumper") || Input.GetKey(KeyCode.Space))
+        if (Input.GetButton("Right_Bumper") || Input.GetKey(KeyCode.E))
         {
             foreach (CannonAttribute attribute in GetComponents<CannonAttribute>())
             {
@@ -111,12 +111,12 @@ public class PlayerController : MonoBehaviour {
             print("Left Bumper!");
         }
 
-        if (Input.GetAxisRaw("DPad_X") < -0.5 && XDPadInUse == false || Input.GetKey(KeyCode.Q))
+        if (Input.GetAxisRaw("DPad_X") < -0.5 && XDPadInUse == false)
         {
             XDPadInUse = true;
             GetComponent<CannonAttribute>().DPadMovement(-1, 0);
         }
-        if (Input.GetAxisRaw("DPad_X") > 0.5 && XDPadInUse == false || Input.GetKey(KeyCode.E))
+        if (Input.GetAxisRaw("DPad_X") > 0.5 && XDPadInUse == false)
         {
             XDPadInUse = true;
             GetComponent<CannonAttribute>().DPadMovement(1, 0);
@@ -124,6 +124,18 @@ public class PlayerController : MonoBehaviour {
         if (Input.GetAxisRaw("DPad_X") > -0.5 && Input.GetAxisRaw("DPad_X") < 0.5)
         {
             XDPadInUse = false;
+        }
+        if ( Input.GetKeyDown(KeyCode.X) )
+        {
+            GetComponent<CannonAttribute>().DPadMovement(-1, 0);
+        }
+        if ( Input.GetKeyDown(KeyCode.C) )
+        {
+            GetComponent<CannonAttribute>().DPadMovement(1, 0);
+        }
+        if ( Input.GetKeyDown(KeyCode.R) )
+        {
+            GetComponent<CannonAttribute>().SwitchTo(GameObject.FindGameObjectWithTag("MainCannon"));
         }
 
         if (Input.GetAxisRaw("DPad_Y") < -0.5 && YDPadInUse == false)

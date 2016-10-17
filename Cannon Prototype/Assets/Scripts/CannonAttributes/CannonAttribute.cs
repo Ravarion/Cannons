@@ -75,9 +75,8 @@ public class CannonAttribute : MonoBehaviour {
         {
             return;
         }
-        Quaternion rotation = Quaternion.Euler(new Vector3(0, x, 0) * 18 * Time.deltaTime);
-
-        transform.Rotate(new Vector3(0, x, 0), 18 * Time.deltaTime);
+        Vector3 movementDirection = new Vector3(transform.forward.x, 0, transform.forward.z) * y + new Vector3(transform.right.x, 0, transform.right.z) * x;
+        GetComponent<Rigidbody>().AddForce(movementDirection * 0.1f, ForceMode.Impulse);
         //TODO: Test this
     }
 
