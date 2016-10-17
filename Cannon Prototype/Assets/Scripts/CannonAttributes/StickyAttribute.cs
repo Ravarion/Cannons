@@ -3,8 +3,6 @@ using System.Collections;
 
 public class StickyAttribute : CannonAttribute {
 
-
-
 	void OnCollisionEnter(Collision col)
 	{
 		hitNormal = col.contacts [0].normal;

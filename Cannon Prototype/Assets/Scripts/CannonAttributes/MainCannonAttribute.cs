@@ -65,6 +65,7 @@ public class MainCannonAttribute : CannonAttribute {
         transform.FindChild("ShotPath").GetChild(i).position = Vector3.Lerp(transform.FindChild("ShotPath").GetChild(i).position, finalPosition, 0.2f);
     }
 
+    //Shoot
     override public void RightTriggerDown()
     {
         if (!GetComponent<PlayerController>().currentCannon)
