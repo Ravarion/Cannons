@@ -98,6 +98,8 @@ public class Menu : MonoBehaviour {
     }
     public void MainMenuButton()
     {
+        Time.timeScale = 1;
+        paused = false;
         SceneManager.LoadScene(0);
     }
 }
