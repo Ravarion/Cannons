@@ -6,9 +6,13 @@ public class LoseOnTouch : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
-        if (col.gameObject.tag == "Cannon")
+        if (col.gameObject.tag == "MainCannon")
         {
-            print("You lose!");
+            GameObject.Find("Scripts").GetComponent<LevelManager>().ResetLevel();
+        }
+        if(col.gameObject.tag == "Cannon")
+        {
+            col.gameObject.GetComponent<CannonAttribute>().SelfDestruct();
         }
     }
 }

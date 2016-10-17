@@ -42,6 +42,13 @@ public class CannonAttribute : MonoBehaviour {
         }
     }
 
+    virtual public void SelfDestruct()
+    {
+        //TODO: Explosion
+        SwitchTo(GameObject.FindGameObjectWithTag("MainCannon"));
+        Destroy(gameObject);
+    }
+
     virtual public void UpdateAttributeText()
     {
         if (GetComponents<CannonAttribute>().Length < 1)
