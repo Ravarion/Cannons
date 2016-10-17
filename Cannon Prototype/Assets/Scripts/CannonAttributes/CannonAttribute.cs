@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class CannonAttribute : MonoBehaviour {
@@ -8,6 +9,10 @@ public class CannonAttribute : MonoBehaviour {
     public float blowback = 1;
     public AudioClip cannonFireSound;
     public AudioClip deathSound;
+
+    public Text attributeText;
+    public bool canMove = true;
+	public Vector3 hitNormal;
 
     virtual public void Start()
     {
@@ -23,11 +28,48 @@ public class CannonAttribute : MonoBehaviour {
         {
             cannonFireSound = Resources.Load("Sounds/cannonBlast") as AudioClip;
         }
+        if(attributeText == null)
+        {
+            attributeText = GameObject.Find("Powerup Text").GetComponent<Text>();
+        }
     }
 
     virtual public void Update()
     {
-        //Place holder
+        if(GetComponent<PlayerController>().currentCannon)
+        {
+            UpdateAttributeText();
+        }
+    }
+
+    virtual public void UpdateAttributeText()
+    {
+        if (GetComponents<CannonAttribute>().Length < 1)
+        {
+            attributeText.text = "Left Bumper:  Null";
+        }
+        else
+        {
+            attributeText.text = "Left Bumper:  " + GetComponents<CannonAttribute>()[0].GetType().FullName;
+        }
+        attributeText.text += "\n";
+        if (GetComponents<CannonAttribute>().Length < 2)
+        {
+            attributeText.text += "Right Bumper: Null";
+        }
+        else
+        {
+            attributeText.text += "Right Bumper: " + GetComponents<CannonAttribute>()[1].GetType().FullName;
+        }
+        attributeText.text += "\n";
+        if (GetComponents<CannonAttribute>().Length < 3)
+        {
+            attributeText.text += "A Button:     Null";
+        }
+        else
+        {
+            attributeText.text += "A Button:     " + GetComponents<CannonAttribute>()[2].GetType().FullName;
+        }
     }
 
     virtual public void PlayCannonFireSound()
@@ -48,12 +90,30 @@ public class CannonAttribute : MonoBehaviour {
         }
     }
 
+	void OnCollisionEnter(Collision col)
+	{
+		hitNormal = col.contacts [0].normal;
+		canMove = true;
+	}
+
+	void OnCollisionStay(Collision col)
+	{
+		hitNormal = col.contacts [0].normal;
+		canMove = true;
+	}
+
+	void OnCollisionExit(Collision col)
+	{
+		hitNormal = Vector3.up;
+		canMove = false;
+	}
+
     virtual public void SwitchTo(GameObject cannon)
     {
         //Switch current object off
-        transform.FindChild("Main Camera").gameObject.SetActive(false);
-        GetComponent<PlayerController>().currentCannon = false;
         GetComponent<MouseLook>().enabled = false;
+        GetComponent<PlayerController>().currentCannon = false;
+        transform.FindChild("Main Camera").gameObject.SetActive(false);
         //Switch next object on
         cannon.transform.FindChild("Main Camera").gameObject.SetActive(true);
         cannon.GetComponent<PlayerController>().currentCannon = true;
@@ -66,8 +126,20 @@ public class CannonAttribute : MonoBehaviour {
         {
             return;
         }
-        Vector3 movementDirection = new Vector3(transform.forward.x, 0, transform.forward.z) * y + new Vector3(transform.right.x, 0, transform.right.z) * x;
-        GetComponent<Rigidbody>().AddForce(movementDirection * 0.1f, ForceMode.Impulse);
+        if(!GetComponent<PlayerController>().isGrounded)
+        {
+            return;
+        }
+        /**Patrick's Movement
+        //Vector3 movementDirection = new Vector3(transform.forward.x, 0, transform.forward.z) * y + new Vector3(transform.right.x, 0, transform.right.z) * x;
+        //GetComponent<Rigidbody>().AddForce(movementDirection * 0.1f, ForceMode.Impulse);*/
+
+        /**Marcus's Movement*/
+		Vector3 movementDirection = new Vector3 (transform.forward.x, 0, transform.forward.z) * y + new Vector3 (transform.right.x, 0, transform.right.z) * x;
+		movementDirection = Vector3.ProjectOnPlane (movementDirection, hitNormal);
+        //Vector3 movementDirection = new Vector3(transform.forward.x, transform.forward.y, transform.forward.z) * y + new Vector3(transform.right.x, transform.right.y, transform.right.z) * x;
+        //movementDirection = new Vector3(transform.forward.x,0,transform.forward.z) * y + new Vector3(transform.forward.x,0,transform.forward.z) * x;
+        GetComponent<Rigidbody> ().AddForce (movementDirection * 0.1f, ForceMode.Impulse);
     }
     virtual public void RightStickMovement(float x, float y)
     {
@@ -75,9 +147,6 @@ public class CannonAttribute : MonoBehaviour {
         {
             return;
         }
-        Vector3 movementDirection = new Vector3(transform.forward.x, 0, transform.forward.z) * y + new Vector3(transform.right.x, 0, transform.right.z) * x;
-        GetComponent<Rigidbody>().AddForce(movementDirection * 0.1f, ForceMode.Impulse);
-        //TODO: Test this
     }
 
     virtual public void DPadMovement(float x, float y)
@@ -104,7 +173,6 @@ public class CannonAttribute : MonoBehaviour {
                 {
                     if (gameObject == cannonArray[i])
                     {
-                        print(i);
                         if (i == cannonArray.Length - 1)
                         {
                             switchIndex = 0;
