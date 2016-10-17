@@ -200,31 +200,11 @@ public class PlayerController : MonoBehaviour {
     {
         isGrounded = true;
         GetComponent<Rigidbody>().drag = 1;
-        //Todo: Improved isGrounded logic
     }
 
     void OnCollisionExit(Collision col)
     {
         isGrounded = false;
         GetComponent<Rigidbody>().drag = 0;
-    }
-
-    //when this object is created, it is subscribed to the event GenericPowerUpAbility
-    void OnEnable(){
-        //JetpackPickUp.JetPackOn += GenericPowerUpAbility;
-	}
-	//when the event GenericPowerUpAbility occurs, change color to pickupGetColor
-	void GenericPowerUpAbility(){
-		this.gameObject.GetComponent<Renderer>().material.SetColor("_Color", pickupGetColor);
-        this.gameObject.GetComponent<Jetpack>().enabled=true;
-	}
-
-    //this is called to disable current powerups, intended to be simplified with enums
-    void ResetPowerUp(){
-        this.gameObject.GetComponent<Renderer>().material.SetColor("_Color", originalColor);
-
-        //if the jetpack script is enabled, disable it
-        if (this.gameObject.GetComponent<Jetpack>().enabled)
-            this.gameObject.GetComponent<Jetpack>().enabled=false;
     }
 }
