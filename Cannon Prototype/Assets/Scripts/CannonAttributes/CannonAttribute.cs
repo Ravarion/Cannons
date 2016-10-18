@@ -133,7 +133,7 @@ public class CannonAttribute : MonoBehaviour {
         {
             return;
         }
-        if(!GetComponent<PlayerController>().isGrounded)
+        if(!GetComponent<PlayerController>().isGrounded || !canMove)
         {
             return;
         }
