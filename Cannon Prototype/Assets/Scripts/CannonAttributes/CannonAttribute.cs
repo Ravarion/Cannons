@@ -32,6 +32,13 @@ public class CannonAttribute : MonoBehaviour {
         {
             attributeText = GameObject.Find("Powerup Text").GetComponent<Text>();
         }
+        if(!toShoot)
+        {
+            if(gameObject.tag != "MainCannon")
+            {
+                toShoot = Resources.Load("Pellet") as GameObject;
+            }
+        }
     }
 
     virtual public void Update()
@@ -252,6 +259,10 @@ public class CannonAttribute : MonoBehaviour {
         PlayCannonFireSound();
         GetComponent<Rigidbody>().AddForce(transform.forward * blowback);
         GameObject newShot = Instantiate(toShoot, spawnPos.position, Quaternion.identity) as GameObject;
+        if(newShot.GetComponent<Pellets>() != null)
+        {
+            newShot.GetComponent<Pellets>().cannon = gameObject;
+        }
         newShot.GetComponent<Rigidbody>().AddForce(transform.forward * 20 * GetComponent<Rigidbody>().mass, ForceMode.Impulse);
         newShot.transform.rotation = transform.rotation;
     }
