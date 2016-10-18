@@ -77,7 +77,6 @@ public class MouseLook : MonoBehaviour
 
 
         }
-        /*
         else if (axes == RotationAxes.MouseX)
         {
             var mouseDeltaX = Input.GetAxisRaw("Mouse X");
@@ -89,11 +88,11 @@ public class MouseLook : MonoBehaviour
         else
         {
             var mouseDeltaY = Input.GetAxisRaw("Mouse Y");
-            rotationY += Input.GetAxis("Mouse Y") * sensitivity.y;
+            rotationY -= Input.GetAxis("Mouse Y") * sensitivity.y;
             rotationY = ClampAngle(rotationY, minimumY, maximumY);
             Quaternion yQuaternion = Quaternion.AngleAxis(-rotationY, Vector3.right);
             transform.localRotation = originalRotation * yQuaternion;
-        }*/
+        }
         transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0);
     }
     void Start()
