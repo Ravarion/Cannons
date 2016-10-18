@@ -99,15 +99,21 @@ public class CannonAttribute : MonoBehaviour {
 
 	void OnCollisionEnter(Collision col)
 	{
-		hitNormal = col.contacts [0].normal;
-		canMove = true;
+		if (col.contacts [0].normal.y > .5f) {
+			hitNormal = col.contacts [0].normal;
+			canMove = true;
+		}
 	}
 
 	void OnCollisionStay(Collision col)
 	{
-		hitNormal = col.contacts [0].normal;
-		canMove = true;
+		if (col.contacts [0].normal.y > .5f) {
+			hitNormal = col.contacts [0].normal;
+			canMove = true;
+		}
 	}
+		
+
 
 	void OnCollisionExit(Collision col)
 	{
