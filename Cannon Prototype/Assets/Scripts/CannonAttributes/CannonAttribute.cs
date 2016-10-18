@@ -45,7 +45,10 @@ public class CannonAttribute : MonoBehaviour {
     virtual public void SelfDestruct()
     {
         //TODO: Explosion
-        SwitchTo(GameObject.FindGameObjectWithTag("MainCannon"));
+        if(GetComponent<PlayerController>().currentCannon)
+        {
+            SwitchTo(GameObject.FindGameObjectWithTag("MainCannon"));
+        }
         Destroy(gameObject);
     }
 

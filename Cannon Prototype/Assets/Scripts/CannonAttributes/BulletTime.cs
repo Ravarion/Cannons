@@ -6,13 +6,13 @@ public class BulletTime : CannonAttribute {
     public float slowTime = 0.25f;
 
 	// Use this for initialization
-	void Start () {
-	
+	public override void Start () {
+        base.Start();
 	}
 	
 	// Update is called once per frame
-	void Update () {
-
+	public override void Update () {
+        base.Update();
         /*
         if (Input.GetKey("f"))
             Time.timeScale = slowTime;
@@ -21,17 +21,25 @@ public class BulletTime : CannonAttribute {
         */
 	}
 
+    public override bool ADown(bool checkOverwrite)
+    {
+        return true;
+    }
+
+    public override bool AHold(bool checkOverwrite)
+    {
+        return true;
+    }
+
     // sets timeScale to slowTime while 'A' is held
     public override void AHold()
     {
         Time.timeScale = slowTime;
-        base.AHold();
     }
 
     // sets timeScale back to normal time when 'A' is released
     public override void AUp()
     {
         Time.timeScale = 1.0f;
-        base.AUp();
     }
 }

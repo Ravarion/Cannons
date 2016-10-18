@@ -44,6 +44,7 @@ public class Jetpack : CannonAttribute {
             energy += Time.deltaTime * 3;
         }
         fuelGUI.transform.FindChild("Fuel").GetComponent<RectTransform>().sizeDelta = new Vector2(0,-1+energy/maxEnergy);
+        fuelGUI.transform.LookAt(Camera.main.transform);
     }
 
     public override bool AHold(bool checkOverwrite)
