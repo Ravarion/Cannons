@@ -3,7 +3,19 @@ using System.Collections;
 
 public class StickyAttribute : CannonAttribute {
 
-	void OnCollisionEnter(Collision col)
+    public bool toggledOn = true;
+
+    public override bool ADown(bool checkOverwrite)
+    {
+        return true;
+    }
+
+    public override void ADown()
+    {
+        //toggledOn = !toggledOn;
+    }
+
+    void OnCollisionEnter(Collision col)
 	{
 		hitNormal = col.contacts [0].normal;
 		GetComponent<Rigidbody> ().useGravity = false;

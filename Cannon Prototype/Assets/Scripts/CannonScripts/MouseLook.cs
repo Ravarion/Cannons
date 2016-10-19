@@ -92,11 +92,7 @@ public class MouseLook : MonoBehaviour
             rotationY = ClampAngle(rotationY, minimumY, maximumY);
             Quaternion yQuaternion = Quaternion.AngleAxis(-rotationY, Vector3.right);
             transform.localRotation = originalRotation * yQuaternion;
-<<<<<<< HEAD
         }
-=======
-        }*/
->>>>>>> 2c6a1f797a1cf4c47299d689eea2cdc5a7888d2b
     }
     void Start()
     {

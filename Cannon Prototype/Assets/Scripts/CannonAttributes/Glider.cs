@@ -3,21 +3,29 @@ using System.Collections;
 
 public class Glider : CannonAttribute {
 
-    public float liftForce = 0.5f;
+    private float liftForce = 0.15f;
     public bool glideBreak = false;
+    public bool toggledOff = false;
 
     //Provides constant upward Force to slow desent
     void FixedUpdate()
     {
-
-        //print(GetComponent<Rigidbody>().velocity.ToString());
-        //print(transform.forward.ToString());
-
-        if(glideBreak == false)
+        if(toggledOff == false && !GetComponent<PlayerController>().isGrounded)
         {
             GliderYaw(GetComponent<Rigidbody>());
-            GetComponent<Rigidbody>().AddForce(Vector3.up * liftForce);
+            float downVel = GetComponent<Rigidbody>().velocity.y;
+            GetComponent<Rigidbody>().AddForce(Vector3.up * -downVel - Vector3.up * liftForce);
         }
+    }
+
+    public override bool ADown(bool checkOverwrite)
+    {
+        return true;
+    }
+
+    public override void ADown()
+    {
+        toggledOff = !toggledOff;
     }
 
     //stops glide force on collision

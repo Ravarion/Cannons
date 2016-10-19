@@ -6,9 +6,14 @@ public class PlayerController : MonoBehaviour {
 	public Color originalColor = Color.gray;
 	public bool currentCannon = true;
     public bool isGrounded = false;
-    private bool TriggersInUse = false;
+    private bool TriggersInUse = true;
     private bool XDPadInUse = false;
     private bool YDPadInUse = false;
+
+    void Start()
+    {
+        TriggersInUse = true;
+    }
 
     void Update()
     {
@@ -78,6 +83,7 @@ public class PlayerController : MonoBehaviour {
             TriggersInUse = false;
         }
 
+        //Ability 1
         if (Input.GetButton("Left_Bumper") || Input.GetKey(KeyCode.Space))
         {
             GetComponents<CannonAttribute>()[0].AHold();
@@ -86,28 +92,30 @@ public class PlayerController : MonoBehaviour {
         {
             GetComponents<CannonAttribute>()[0].ADown();
         }
-        if (Input.GetButton("Right_Bumper"))
+        //Ability 2
+        if (Input.GetButton("Right_Bumper") || Input.GetKey(KeyCode.LeftShift))
         {
             if (GetComponents<CannonAttribute>().Length > 1)
             {
                 GetComponents<CannonAttribute>()[1].AHold();
             }
         }
-        if (Input.GetButtonDown("Right_Bumper"))
+        if (Input.GetButtonDown("Right_Bumper") || Input.GetKeyDown(KeyCode.LeftShift))
         {
             if(GetComponents<CannonAttribute>().Length > 1)
             {
                 GetComponents<CannonAttribute>()[1].ADown();
             }
         }
-        if (Input.GetButton("A"))
+        //Ability 3
+        if (Input.GetButton("A") || Input.GetKey(KeyCode.LeftControl))
         {
             if (GetComponents<CannonAttribute>().Length > 2)
             {
                 GetComponents<CannonAttribute>()[2].AHold();
             }
         }
-        if (Input.GetButtonDown("A"))
+        if (Input.GetButtonDown("A") || Input.GetKeyDown(KeyCode.LeftControl))
         {
             if (GetComponents<CannonAttribute>().Length > 2)
             {
@@ -131,17 +139,13 @@ public class PlayerController : MonoBehaviour {
             XDPadInUse = false;
         }
 
-        if ( Input.GetKeyDown(KeyCode.X) )
+        if ( Input.GetKeyDown(KeyCode.Q) )
         {
             GetComponent<CannonAttribute>().DPadMovement(-1, 0);
         }
-        if ( Input.GetKeyDown(KeyCode.C) )
+        if ( Input.GetKeyDown(KeyCode.E) )
         {
             GetComponent<CannonAttribute>().DPadMovement(1, 0);
-        }
-        if ( Input.GetKeyDown(KeyCode.R) )
-        {
-            GetComponent<CannonAttribute>().SwitchTo(GameObject.FindGameObjectWithTag("MainCannon"));
         }
 
         if (Input.GetAxisRaw("DPad_Y") < -0.5 && YDPadInUse == false)
@@ -165,7 +169,7 @@ public class PlayerController : MonoBehaviour {
                 GetComponent<MainCannonAttribute>().SwitchAttributes();
             }
         }
-        if (Input.GetButtonDown("X") || Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetButtonDown("X") || Input.GetKeyDown(KeyCode.R))
         {
             GetComponent<CannonAttribute>().SwitchTo(GameObject.FindGameObjectWithTag("MainCannon"));
         }
@@ -177,9 +181,9 @@ public class PlayerController : MonoBehaviour {
             }
         }
 
-        if (Input.GetButtonDown("Start"))
+        if (Input.GetButtonDown("Start") || Input.GetKeyDown(KeyCode.Escape))
         {
-            print("Start");
+            GameObject.Find("Scripts").GetComponent<Menu>().Pause();
         }
         if (Input.GetButtonDown("Back"))
         {

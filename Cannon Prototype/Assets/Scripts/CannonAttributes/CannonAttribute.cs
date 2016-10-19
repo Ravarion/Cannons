@@ -122,8 +122,6 @@ public class CannonAttribute : MonoBehaviour {
 			canMove = true;
 		}
 	}
-		
-
 
 	void OnCollisionExit(Collision col)
 	{
@@ -137,9 +135,9 @@ public class CannonAttribute : MonoBehaviour {
         GetComponent<MouseLook>().enabled = false;
         GetComponent<PlayerController>().currentCannon = false;
 		if (gameObject.tag == "MainCannon") {
-			transform.FindChild("Barrel").FindChild("Main Camera").gameObject.SetActive(true);
+			transform.FindChild("Barrel").FindChild("Main Camera").gameObject.SetActive(false);
 		} else {
-			transform.FindChild("Main Camera").gameObject.SetActive(true);
+			transform.FindChild("Main Camera").gameObject.SetActive(false);
 		}
         //Switch next object on
 		if (cannon.tag == "MainCannon") {
@@ -276,6 +274,10 @@ public class CannonAttribute : MonoBehaviour {
         PlayCannonFireSound();
         GetComponent<Rigidbody>().AddForce(transform.forward * blowback);
         GameObject newShot = Instantiate(toShoot, spawnPos.position, Quaternion.identity) as GameObject;
+        if(newShot.GetComponent<Pellets>() != null)
+        {
+            newShot.GetComponent<Pellets>().cannon = gameObject;
+        }
         newShot.GetComponent<Rigidbody>().AddForce(transform.forward * 20 * GetComponent<Rigidbody>().mass, ForceMode.Impulse);
         newShot.transform.rotation = transform.rotation;
     }

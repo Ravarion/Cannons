@@ -20,11 +20,11 @@ public class Pellets : MonoBehaviour {
 	}
 
     //Destroys pellet when it collides with anything except the cannon
-    void OnCollisionEnter(Collision col)
+    /*void OnCollisionEnter(Collision col)
     {  
         if(col.gameObject.tag != "Cannon")
         {
             Destroy(gameObject);
         }
-    }
+    }*/
 }

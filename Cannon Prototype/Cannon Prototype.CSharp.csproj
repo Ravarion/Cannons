@@ -69,7 +69,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\BlackHole.cs" />
-    <Compile Include="Assets\FPSDisplay.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\Bouncy.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\BulletTime.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\CannonAttribute.cs" />
@@ -84,12 +83,11 @@
     <Compile Include="Assets\Scripts\CannonAttributes\SpawnObjectOnPress.cs" />
     <Compile Include="Assets\Scripts\CannonAttributes\StickyAttribute.cs" />
     <Compile Include="Assets\Scripts\CannonScripts\MouseLook.cs" />
+    <Compile Include="Assets\Scripts\CannonScripts\Pellets.cs" />
     <Compile Include="Assets\Scripts\CannonScripts\PlayerController.cs" />
-    <Compile Include="Assets\Scripts\CannonScripts\PlayerInput.cs" />
-    <Compile Include="Assets\Scripts\Pellets.cs" />
-    <Compile Include="Assets\Scripts\SendPowerUp.cs" />
     <Compile Include="Assets\Scripts\StartMenu.cs" />
     <Compile Include="Assets\Scripts\Utility\Destroy.cs" />
+    <Compile Include="Assets\Scripts\Utility\FPSDisplay.cs" />
     <Compile Include="Assets\Scripts\Utility\LevelManager.cs" />
     <Compile Include="Assets\Scripts\WorldScripts\LoseOnTouch.cs" />
     <Compile Include="Assets\Scripts\WorldScripts\Menu.cs" />

@@ -60,6 +60,10 @@ public class MainCannonAttribute : CannonAttribute {
 
     public void UpdateProjectedArc(int i, float t)
     {
+        if(i == 0)
+        {
+            transform.FindChild("ShotPath").GetChild(i).gameObject.SetActive(false);
+        }
 		Transform barrel = transform.FindChild ("Barrel").transform;
         Vector3 startingLoc = spawnPos.position;
         Vector2 linearVelocity = new Vector2(barrel.forward.x * 20, barrel.forward.z * 20);

@@ -12,10 +12,19 @@ public class Menu : MonoBehaviour {
     {
         paused = false;
     }
-	void Update ()
+
+    void Update()
+    {
+        if (paused && (Input.GetButtonDown("Start") || Input.GetKeyDown(KeyCode.Escape)))
+        {
+            Pause();
+        }
+    }
+
+    public void Pause()
     {
         //pause
-        if (Input.GetKeyDown(KeyCode.T) && paused == false)
+        if (paused == false)
         {
             Time.timeScale = 0;
             mainMenu.SetActive(true);
@@ -26,6 +35,7 @@ public class Menu : MonoBehaviour {
                 if (mainCannon.GetComponent<PlayerController>().currentCannon == true)
                 {
                     mainCannon.GetComponent<MouseLook>().enabled = false;
+                    mainCannon.transform.FindChild("Barrel").GetComponent<MouseLook>().enabled = false;
                     mainCannon.GetComponent<PlayerController>().enabled = false;
                 }
             }
@@ -44,7 +54,7 @@ public class Menu : MonoBehaviour {
             Cursor.visible = true;
         }
         //unpause
-        else if (Input.GetKeyDown(KeyCode.T) && paused == true)
+        else if (paused == true)
         {
             Time.timeScale = 1;
             mainMenu.SetActive(false);
@@ -54,6 +64,7 @@ public class Menu : MonoBehaviour {
                 if (mainCannon.GetComponent<PlayerController>().currentCannon == true)
                 {
                     mainCannon.GetComponent<MouseLook>().enabled = true;
+                    mainCannon.transform.FindChild("Barrel").GetComponent<MouseLook>().enabled = true;
                     mainCannon.GetComponent<PlayerController>().enabled = true;
                 }
             }
@@ -71,6 +82,7 @@ public class Menu : MonoBehaviour {
             Cursor.visible = false;
         }
     }
+
     public void ResumeButton()
     {
         Time.timeScale = 1;

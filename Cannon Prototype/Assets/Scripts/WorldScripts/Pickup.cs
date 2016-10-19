@@ -48,6 +48,9 @@ public class Pickup : MonoBehaviour {
 
     void SendToCannon(GameObject cannon)
     {
+        //Send attribute to main cannon
+        GameObject.FindGameObjectWithTag("MainCannon").GetComponent<MainCannonAttribute>().NewAttributeToSend(toSend);
+
         //Destroy vanilla attribute if it exists
         if (cannon.GetComponent<CannonAttribute>().GetType() == typeof(CannonAttribute))
         {
@@ -82,8 +85,6 @@ public class Pickup : MonoBehaviour {
         {
             if (col.gameObject.tag == "Cannon")
             {
-                //Send attribute to main cannon
-                GameObject.FindGameObjectWithTag("MainCannon").GetComponent<MainCannonAttribute>().NewAttributeToSend(toSend);
                 SendToCannon(col.gameObject);
             }
                
