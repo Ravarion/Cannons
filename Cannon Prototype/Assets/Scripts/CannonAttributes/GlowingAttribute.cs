@@ -7,7 +7,7 @@ public class GlowingAttribute : CannonAttribute {
     public Material glowMaterial;
     public Material normalMaterial;
 
-    public bool lightOn;
+    public bool lightOn = true;
 
     private GameObject lightObject;
 

@@ -4,8 +4,18 @@ using System.Collections;
 public class Glider : CannonAttribute {
 
     private float liftForce = 0.15f;
+    private GameObject gliderWings;
+    private GameObject gliderWingsFab;
     public bool glideBreak = false;
     public bool toggledOff = false;
+
+    public override void Start()
+    {
+        base.Start();
+        gliderWingsFab = Resources.Load("GliderWings") as GameObject;
+        gliderWings = Instantiate(gliderWingsFab, transform.position, transform.rotation) as GameObject;
+        gliderWings.transform.SetParent(transform);
+    }
 
     //Provides constant upward Force to slow desent
     void FixedUpdate()
@@ -25,16 +35,27 @@ public class Glider : CannonAttribute {
 
     public override void ADown()
     {
-        toggledOff = !toggledOff;
+        Toggle(!toggledOff);
     }
 
-    //stops glide force on collision
-    //NOT IMPLEMENTED!
+    void Toggle(bool toggleOff)
+    {
+        toggledOff = toggleOff;
+        if (toggledOff)
+        {
+            gliderWings.SetActive(false);
+        }
+        else
+        {
+            gliderWings.SetActive(true);
+        }
+    }
+
     void OnCollisionEnter(Collision col)
     {
         if(col.gameObject.tag != "Pellet")
         {
-            glideBreak = true;
+            Toggle(true);
         }
         
 //        gameObject.AddComponent<CannonAttribute>();

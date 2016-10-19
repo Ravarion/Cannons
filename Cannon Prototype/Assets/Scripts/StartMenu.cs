@@ -15,11 +15,11 @@ public class StartMenu : MonoBehaviour {
     }
     public void SecondLevel()
     {
-        SceneManager.LoadScene("Aram_Cavern_Lvl");
+        SceneManager.LoadScene("Jonathan_Glider_Level");
     }
     public void ThirdLevel()
     {
-        SceneManager.LoadScene("Jonathan_Glider_Level");
+        SceneManager.LoadScene("Aram_Cavern_Lvl");
     }/*
     public void OptionsButton() {
         SceneManager.LoadScene(optionsScene);

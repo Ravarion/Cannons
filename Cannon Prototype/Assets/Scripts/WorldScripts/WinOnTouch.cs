@@ -5,9 +5,9 @@ public class WinOnTouch : MonoBehaviour {
 
     void OnCollisionEnter(Collision col)
     {
-        if(col.gameObject.tag == "Cannon")
+        if (col.gameObject.tag == "Cannon" || col.gameObject.tag == " MainCannon" || col.gameObject.tag == "Pellet")
         {
-            print("You win!");
+            GameObject.Find("Scripts").GetComponent<Menu>().MainMenuButton();
         }
     }
 }

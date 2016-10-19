@@ -153,7 +153,14 @@ public class MainCannonAttribute : CannonAttribute {
 
     public void DropAttribute()
     {
-        rightAttributeToSend = null;
+        if(rightAttributeToSend == null)
+        {
+            leftAttributeToSend = null;
+        }
+        else
+        {
+            rightAttributeToSend = null;
+        }
         UpdateAttributeText();
     }
 

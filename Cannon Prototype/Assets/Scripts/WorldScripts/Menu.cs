@@ -112,6 +112,9 @@ public class Menu : MonoBehaviour {
     {
         Time.timeScale = 1;
         paused = false;
+        paused = false;
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
         SceneManager.LoadScene("Main Menu");
     }
     public void RestartLevelButton()

@@ -166,10 +166,10 @@ public class PlayerController : MonoBehaviour {
         {
             if(GetComponent<MainCannonAttribute>())
             {
-                GetComponent<MainCannonAttribute>().SwitchAttributes();
+                GetComponent<MainCannonAttribute>().DropAttribute();
             }
         }
-        if (Input.GetButtonDown("X") || Input.GetKeyDown(KeyCode.R))
+        if (Input.GetButtonDown("X") || Input.GetKeyDown(KeyCode.Z))
         {
             GetComponent<CannonAttribute>().SwitchTo(GameObject.FindGameObjectWithTag("MainCannon"));
         }
@@ -177,7 +177,7 @@ public class PlayerController : MonoBehaviour {
         {
             if (GetComponent<MainCannonAttribute>())
             {
-                GetComponent<MainCannonAttribute>().DropAttribute();
+                GetComponent<MainCannonAttribute>().SwitchAttributes();
             }
         }
 

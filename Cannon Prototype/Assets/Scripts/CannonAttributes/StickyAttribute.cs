@@ -3,18 +3,6 @@ using System.Collections;
 
 public class StickyAttribute : CannonAttribute {
 
-    public bool toggledOn = true;
-
-    public override bool ADown(bool checkOverwrite)
-    {
-        return true;
-    }
-
-    public override void ADown()
-    {
-        //toggledOn = !toggledOn;
-    }
-
     void OnCollisionEnter(Collision col)
 	{
 		hitNormal = col.contacts [0].normal;
@@ -41,7 +29,12 @@ public class StickyAttribute : CannonAttribute {
 		//disable drag, add gravity
 	}
 
-	public override void LeftStickMovement(float x, float y)
+    public override bool LeftStickMovement(bool checkOverwrite)
+    {
+        return true;
+    }
+
+    public override void LeftStickMovement(float x, float y)
 	{
 		if (canMove) {
 			if (!GetComponent<PlayerController> ().currentCannon) {
