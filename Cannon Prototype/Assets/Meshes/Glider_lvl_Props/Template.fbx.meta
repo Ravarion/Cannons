@@ -1,0 +1,171 @@
+fileFormatVersion: 2
+guid: ade2786d83a1ae84ea88cc3793ae6b4f
+timeCreated: 1476720813
+licenseType: Pro
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: Cylinder_Sub_1
+    100002: Cylinder_Sub_2
+    100004: Cylinder_Sub_3
+    100006: Cylinder_Sub_4
+    100008: Cyliner_Main
+    100010: Goal
+    100012: I_beam
+    100014: Large_Mesa
+    100016: Obstruction_Wall
+    100018: pCylinder7
+    100020: Pipe_1
+    100022: Pipe_2
+    100024: Platform_1
+    100026: Platform_2
+    100028: Platform_3
+    100030: Power_Up_Glide
+    100032: Power_Up_Rocket
+    100034: Room
+    100036: Stalegtite
+    100038: Start_Platform
+    100040: //RootNode
+    400000: Cylinder_Sub_1
+    400002: Cylinder_Sub_2
+    400004: Cylinder_Sub_3
+    400006: Cylinder_Sub_4
+    400008: Cyliner_Main
+    400010: Goal
+    400012: I_beam
+    400014: Large_Mesa
+    400016: Obstruction_Wall
+    400018: pCylinder7
+    400020: Pipe_1
+    400022: Pipe_2
+    400024: Platform_1
+    400026: Platform_2
+    400028: Platform_3
+    400030: Power_Up_Glide
+    400032: Power_Up_Rocket
+    400034: Room
+    400036: Stalegtite
+    400038: Start_Platform
+    400040: //RootNode
+    2300000: Cylinder_Sub_1
+    2300002: Cylinder_Sub_2
+    2300004: Cylinder_Sub_3
+    2300006: Cylinder_Sub_4
+    2300008: Cyliner_Main
+    2300010: Goal
+    2300012: I_beam
+    2300014: Large_Mesa
+    2300016: Obstruction_Wall
+    2300018: Pipe_1
+    2300020: Pipe_2
+    2300022: Platform_1
+    2300024: Platform_2
+    2300026: Platform_3
+    2300028: Power_Up_Glide
+    2300030: Power_Up_Rocket
+    2300032: Room
+    2300034: Stalegtite
+    2300036: Start_Platform
+    3300000: Cylinder_Sub_1
+    3300002: Cylinder_Sub_2
+    3300004: Cylinder_Sub_3
+    3300006: Cylinder_Sub_4
+    3300008: Cyliner_Main
+    3300010: Goal
+    3300012: I_beam
+    3300014: Large_Mesa
+    3300016: Obstruction_Wall
+    3300018: Pipe_1
+    3300020: Pipe_2
+    3300022: Platform_1
+    3300024: Platform_2
+    3300026: Platform_3
+    3300028: Power_Up_Glide
+    3300030: Power_Up_Rocket
+    3300032: Room
+    3300034: Stalegtite
+    3300036: Start_Platform
+    4300000: Start_Platform
+    4300002: Cyliner_Main
+    4300004: Pipe_1
+    4300006: Obstruction_Wall
+    4300008: Large_Mesa
+    4300010: Platform_3
+    4300012: Platform_2
+    4300014: Platform_1
+    4300016: Stalegtite
+    4300018: Room
+    4300020: Cylinder_Sub_4
+    4300022: Cylinder_Sub_1
+    4300024: Cylinder_Sub_3
+    4300026: Cylinder_Sub_2
+    4300028: I_beam
+    4300030: Power_Up_Glide
+    4300032: Power_Up_Rocket
+    4300034: Goal
+    4300036: Pipe_2
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleRotations: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -100,7 +100,7 @@ public class Menu : MonoBehaviour {
     {
         Time.timeScale = 1;
         paused = false;
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("Main Menu");
     }
     public void RestartLevelButton()
     {
