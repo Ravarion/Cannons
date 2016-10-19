@@ -1,11 +1,9 @@
 *.stamp
 *.bin
-Cannon Prototype/Temp/*
-Cannon Prototype/Library/metadata/*
-Cannon Prototype/Library/metadata/**/*
-Cannon Prototype/Library/metadata/00/00000000000000002000000000000000
-Cannon Prototype/Library/metadata/00/00000000000000002000000000000000
-Cannon Prototype/Library/metadata/00/00000000000000002000000000000000
-Cannon Prototype/Library/metadata/00/00000000000000002000000000000000
-Cannon Prototype/Library/metadata/00/00000000000000004000000000000000
-Cannon Prototype/Library/metadata/00/00000000000000003000000000000000
+Library
+Temp
+*.pidb
+*.sln
+*.userprefs
+*.csprog
+*.orig

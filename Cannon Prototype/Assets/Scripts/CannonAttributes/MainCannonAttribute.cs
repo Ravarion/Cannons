@@ -22,6 +22,7 @@ public class MainCannonAttribute : CannonAttribute {
         base.Update();
         if(GetComponent<PlayerController>().currentCannon)
         {
+			GetComponent<Rigidbody> ().freezeRotation = true;
             if(transform.FindChild("ShotPath").childCount > 0)
             {
                 for(int i = 0; i < 15; i++)
@@ -48,9 +49,10 @@ public class MainCannonAttribute : CannonAttribute {
 
     public void CreateProjectedArc(float t)
     {
+		Transform barrel = transform.FindChild ("Barrel").transform;
         Vector3 startingLoc = spawnPos.position;
-        Vector2 linearVelocity = new Vector2(transform.forward.x * 20, transform.forward.z * 20);
-        float upwardPosition = transform.forward.y * 20f * t + 0.5f * t * t * -9.8f;
+		Vector2 linearVelocity = new Vector2(barrel.forward.x * 20, barrel.forward.z * 20);
+        float upwardPosition = barrel.forward.y * 20f * t + 0.5f * t * t * -9.8f;
         Vector3 finalPosition = new Vector3(linearVelocity.x * t, upwardPosition, linearVelocity.y * t) + startingLoc;
         GameObject newArcObj = Instantiate(arcPrefab, finalPosition, Quaternion.identity) as GameObject;
         newArcObj.transform.parent = transform.FindChild("ShotPath");
@@ -58,9 +60,10 @@ public class MainCannonAttribute : CannonAttribute {
 
     public void UpdateProjectedArc(int i, float t)
     {
+		Transform barrel = transform.FindChild ("Barrel").transform;
         Vector3 startingLoc = spawnPos.position;
-        Vector2 linearVelocity = new Vector2(transform.forward.x * 20, transform.forward.z * 20);
-        float upwardPosition = transform.forward.y * 20f * t + 0.5f * t * t * -9.8f;
+        Vector2 linearVelocity = new Vector2(barrel.forward.x * 20, barrel.forward.z * 20);
+        float upwardPosition = barrel.forward.y * 20f * t + 0.5f * t * t * -9.8f;
         Vector3 finalPosition = new Vector3(linearVelocity.x * t, upwardPosition, linearVelocity.y * t) + startingLoc;
         transform.FindChild("ShotPath").GetChild(i).position = Vector3.Lerp(transform.FindChild("ShotPath").GetChild(i).position, finalPosition, 0.2f);
     }
@@ -72,12 +75,8 @@ public class MainCannonAttribute : CannonAttribute {
         {
             return;
         }
-        if (transform.localScale.x < 0.1f)
-        {
-            return;
-        }
         PlayCannonFireSound();
-        GetComponent<Rigidbody>().AddForce(-transform.forward * blowback, ForceMode.Impulse);
+        //GetComponent<Rigidbody>().AddForce(-transform.forward * blowback, ForceMode.Impulse);
         GameObject newShot = Instantiate(toShoot, spawnPos.position, Quaternion.identity) as GameObject;
         //Add attributes
         if(leftAttributeToSend != null)
@@ -98,15 +97,15 @@ public class MainCannonAttribute : CannonAttribute {
             }
             newShot.AddComponent(rightAttributeToSend.GetComponent<CannonAttribute>().GetType());
         }
-
+		Transform barrel = transform.FindChild ("Barrel").transform;
         newShot.GetComponent<Rigidbody>().mass = GetComponent<Rigidbody>().mass;
         newShot.transform.localScale = transform.localScale / 2;
-        newShot.GetComponent<Rigidbody>().AddForce(transform.forward * 20 * GetComponent<Rigidbody>().mass, ForceMode.Impulse);
-        newShot.transform.rotation = transform.rotation;
-        newShot.transform.FindChild("Main Camera").localPosition = new Vector3(transform.FindChild("Main Camera").localPosition.x, transform.FindChild("Main Camera").localPosition.y, transform.FindChild("Main Camera").localPosition.z - transform.localScale.z * 2);
+        newShot.GetComponent<Rigidbody>().AddForce(barrel.forward * 20 * GetComponent<Rigidbody>().mass, ForceMode.Impulse);
+        newShot.transform.rotation = barrel.rotation;
         newShot.GetComponent<MouseLook>().rotationX = GetComponent<MouseLook>().rotationX;
         newShot.GetComponent<MouseLook>().rotationY = GetComponent<MouseLook>().rotationY;
-        transform.FindChild("Main Camera").gameObject.SetActive(false);
+		transform.FindChild("Barrel").FindChild("Main Camera").gameObject.SetActive(false);
+		//newShot.transform.FindChild("Main Camera").gameObject.SetActive(false);
         GetComponent<MouseLook>().enabled = false;
         GetComponent<PlayerController>().currentCannon = false;
     }

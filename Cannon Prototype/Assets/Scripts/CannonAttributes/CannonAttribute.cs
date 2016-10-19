@@ -136,9 +136,17 @@ public class CannonAttribute : MonoBehaviour {
         //Switch current object off
         GetComponent<MouseLook>().enabled = false;
         GetComponent<PlayerController>().currentCannon = false;
-        transform.FindChild("Main Camera").gameObject.SetActive(false);
+		if (gameObject.tag == "MainCannon") {
+			transform.FindChild("Barrel").FindChild("Main Camera").gameObject.SetActive(true);
+		} else {
+			transform.FindChild("Main Camera").gameObject.SetActive(true);
+		}
         //Switch next object on
-        cannon.transform.FindChild("Main Camera").gameObject.SetActive(true);
+		if (cannon.tag == "MainCannon") {
+			cannon.transform.FindChild("Barrel").FindChild("Main Camera").gameObject.SetActive(true);
+		} else {
+			cannon.transform.FindChild("Main Camera").gameObject.SetActive(true);
+		}
         cannon.GetComponent<PlayerController>().currentCannon = true;
         cannon.GetComponent<MouseLook>().enabled = true;
     }

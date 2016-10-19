@@ -88,11 +88,15 @@ public class MouseLook : MonoBehaviour
         else
         {
             var mouseDeltaY = Input.GetAxisRaw("Mouse Y");
-            rotationY += Input.GetAxis("Mouse Y") * sensitivity.y;
+            rotationY -= Input.GetAxis("Mouse Y") * sensitivity.y;
             rotationY = ClampAngle(rotationY, minimumY, maximumY);
             Quaternion yQuaternion = Quaternion.AngleAxis(-rotationY, Vector3.right);
             transform.localRotation = originalRotation * yQuaternion;
         }
+<<<<<<< HEAD
+=======
+        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0);
+>>>>>>> c68b38f0e32bff47b522dad08080a51c89d85f72
     }
     void Start()
     {
