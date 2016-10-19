@@ -46,8 +46,6 @@ public class Pickup : MonoBehaviour {
         }
     }
 
-<<<<<<< HEAD
-=======
     void SendToCannon(GameObject cannon)
     {
         //Destroy vanilla attribute if it exists
@@ -78,50 +76,15 @@ public class Pickup : MonoBehaviour {
         cannon.AddComponent(toSend.GetComponent<CannonAttribute>().GetType());
     }
 
->>>>>>> 542410b3d3b3342347c1cd20f32c66a7551d29da
     void OnTriggerEnter(Collider col)
     {
         if (GetComponent<Renderer>().enabled == true)
         {
-<<<<<<< HEAD
-            if(col.gameObject.tag == "Cannon")
-            {
-                //Send attribute to main cannon
-                GameObject.FindGameObjectWithTag("MainCannon").GetComponent<MainCannonAttribute>().NewAttributeToSend(toSend);
-
-                //Destroy vanilla attribute if it exists
-                if (col.gameObject.GetComponent<CannonAttribute>().GetType() == typeof(CannonAttribute))
-                {
-                    Destroy(col.gameObject.GetComponent<CannonAttribute>());
-                }
-
-                //Check to see if this attribute already exists on the cannon
-                foreach (CannonAttribute attribute in col.gameObject.GetComponents<CannonAttribute>())
-                {
-                    if (attribute.GetType() == toSend.GetComponent<CannonAttribute>().GetType())
-                    {
-                        PlayBadSound();
-                        return;
-                    }
-                }
-
-                //If too many pickups have been gathered by this cannon
-                if (col.gameObject.GetComponents<CannonAttribute>().Length > 3)
-                {
-                    PlayBadSound();
-                    //Tell cannon to explode
-                }
-
-                //If no match is found, add the new attribute
-                PlayGoodSound();
-                col.gameObject.AddComponent(toSend.GetComponent<CannonAttribute>().GetType());
-=======
             if (col.gameObject.tag == "Cannon")
             {
                 //Send attribute to main cannon
                 GameObject.FindGameObjectWithTag("MainCannon").GetComponent<MainCannonAttribute>().NewAttributeToSend(toSend);
                 SendToCannon(col.gameObject);
->>>>>>> 542410b3d3b3342347c1cd20f32c66a7551d29da
             }
                
 

@@ -93,10 +93,6 @@ public class MouseLook : MonoBehaviour
             Quaternion yQuaternion = Quaternion.AngleAxis(-rotationY, Vector3.right);
             transform.localRotation = originalRotation * yQuaternion;
         }
-<<<<<<< HEAD
-=======
-        transform.localEulerAngles = new Vector3(transform.localEulerAngles.x, transform.localEulerAngles.y, 0);
->>>>>>> c68b38f0e32bff47b522dad08080a51c89d85f72
     }
     void Start()
     {
