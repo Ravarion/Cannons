@@ -4,9 +4,22 @@ using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class StartMenu : MonoBehaviour {
-    
-    public void StartButton() {
+
+    public void StartButton()
+    {
         SceneManager.LoadScene(1);
+    }
+    public void FirstLevel()
+    {
+        SceneManager.LoadScene("Pipes");
+    }
+    public void SecondLevel()
+    {
+        SceneManager.LoadScene("Aram_Cavern_Lvl");
+    }
+    public void ThirdLevel()
+    {
+        SceneManager.LoadScene("Jonathan_Glider_Level");
     }/*
     public void OptionsButton() {
         SceneManager.LoadScene(optionsScene);
