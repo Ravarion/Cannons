@@ -32,6 +32,13 @@ public class CannonAttribute : MonoBehaviour {
         {
             attributeText = GameObject.Find("Powerup Text").GetComponent<Text>();
         }
+        if(!toShoot)
+        {
+            if(gameObject.tag != "MainCannon")
+            {
+                toShoot = Resources.Load("Pellet") as GameObject;
+            }
+        }
     }
 
     virtual public void Update()
